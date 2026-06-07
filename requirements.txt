@@ -1,4 +1,4 @@
-# Pinned environment for the Ancient Greek LLM Stylometry (LREC) study.
+# Pinned environment for the Ancient Greek LLM Stylometry (LRE) study.
 # Versions captured from the working interpreter on Windows 11 / Python 3.12.5.
 # A complete freeze is in env/pip-freeze-full.txt.
 

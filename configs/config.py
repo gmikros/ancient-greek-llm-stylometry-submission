@@ -1,4 +1,4 @@
-"""Central configuration for the Ancient Greek LLM Stylometry (LREC) study.
+"""Central configuration for the Ancient Greek LLM Stylometry (LRE) study.
 
 All paths resolve relative to the repository root so the project can be moved
 freely. External inputs (the existing corpus, legacy feature tables, and the

@@ -29,3 +29,5 @@ scripts/build_*_docx.py
 # OS
 .DS_Store
 Thumbs.db
+# Local Zenodo upload archives (built via git archive)
+*.zip

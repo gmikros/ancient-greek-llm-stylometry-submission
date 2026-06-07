@@ -1,4 +1,4 @@
-# Ancient Greek LLM Stylometry: an LREC Resource + Evaluation
+# Ancient Greek LLM Stylometry: a Resource and Evaluation
 
 [![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-blue.svg)](LICENSE)
 [![Data License: CC BY-SA 4.0](https://img.shields.io/badge/Data%20License-CC%20BY--SA%204.0-lightgrey.svg)](DATASHEET.md)
