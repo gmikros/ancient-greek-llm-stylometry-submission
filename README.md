@@ -1,5 +1,13 @@
 # Ancient Greek LLM Stylometry: an LREC Resource + Evaluation
 
+[![Code License: MIT](https://img.shields.io/badge/Code%20License-MIT-blue.svg)](LICENSE)
+[![Data License: CC BY-SA 4.0](https://img.shields.io/badge/Data%20License-CC%20BY--SA%204.0-lightgrey.svg)](DATASHEET.md)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](env/ENVIRONMENT.md)
+[![NLP: Stanza grc PROIEL](https://img.shields.io/badge/NLP-Stanza%20grc%20PROIEL-orange)](https://stanfordnlp.github.io/stanza/)
+[![Embeddings: Ancient-Greek-BERT](https://img.shields.io/badge/Embeddings-Ancient--Greek--BERT-yellow)](https://huggingface.co/pranaydeeps/Ancient-Greek-BERT)
+[![Venue: LRE (Springer)](https://img.shields.io/badge/Venue-Language%20Resources%20%26%20Evaluation-9cf)](https://www.springer.com/journal/10579)
+[![DOI: pending](https://img.shields.io/badge/DOI-pending%20(Zenodo)-red.svg)](#citation)
+
 How closely do state-of-the-art LLMs (GPT-5.5, Claude 4.8) write Ancient Greek
 compared to the human Attic orators, and have they improved over the previous
 generation (GPT-4o, Claude 3.5)? This repository contains the corpus, code, and
@@ -85,6 +93,27 @@ python src/reconcile_legacy.py
   (embeddings/perplexity). The code auto-detects and falls back to CPU.
 - Claude-3.5 is no longer served by the Anthropic API used here, so the legacy
   Claude-3.5 *documents* (not re-chunked) anchor the Claude longitudinal point.
+
+## Citation
+
+If you use this corpus, code, or analyses, please cite the resource. Machine-readable
+metadata is in [`CITATION.cff`](CITATION.cff); a DOI will be minted via Zenodo on the
+tagged release at acceptance.
+
+```bibtex
+@misc{mikros_ag_llm_stylometry,
+  author       = {Mikros, George},
+  title        = {Ancient Greek LLM Stylometry: a Resource and Evaluation
+                  of Human vs.\ LLM-generated Attic Prose},
+  year         = {2026},
+  howpublished = {\url{https://github.com/gmikros/ancient-greek-llm-stylometry-submission}},
+  note         = {Code: MIT; Data: CC BY-SA 4.0. DOI pending (Zenodo).}
+}
+```
+
+Please also credit the underlying source editions of the [Perseus Digital
+Library](http://www.perseus.tufts.edu/) (see `DATASHEET.md` and
+`output/tables/source_editions.csv`).
 
 ## License
 
