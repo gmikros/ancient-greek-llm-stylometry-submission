@@ -1,0 +1,131 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 20: CLAUSE COMPLEXITY & SYNTACTIC PACKAGING
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Clause-level syntactic complexity beyond mere sentence length
+- Whether AI differences reflect "syntactic packaging" vs verbosity
+- Subordination vs coordination patterns
+- Clause density (clauses per sentence)
+
+VARIABLES INVOLVED:
+- avg_clause_length: Average tokens per clause
+- subordination_ratio: Proportion of subordinate clauses
+- pos_subordinating_conjunction: Frequency of subordinating conjunctions
+- pos_coordinating_conjunction: Frequency of coordinating conjunctions
+- Category1 (System), Category3 (Prompt), Category4 (Label)
+
+FILES GENERATED:
+- clause_features_global.png - 2×2 panel: distributions (Human vs AI)
+- clause_stats_global.csv - Mean, std, median by Human vs AI
+- clause_effect_sizes.csv - Cohen's d for each clause feature
+- clause_all_features_by_system_prompt.png - **COMBINED 2×2 panel** (all features)
+- clause_[feature]_by_system_prompt.png - Individual bar plots per feature
+- clause_by_system_prompt.csv - Full system×prompt breakdown
+- clause_vs_sentence_length.png - Clause vs sentence comparison + density
+
+RESEARCH QUESTIONS:
+1. Do AI and Human differ in syntactic packaging (not just verbosity)?
+2. Does AI use more/less subordination than coordination?
+3. Do Restricted prompts compress clause structure toward Human?
+4. Does Claude vs GPT differ in clause-level syntax?
+5. Is sentence length increase due to MORE clauses or LONGER clauses?
+
+INTERPRETATION:
+
+Avg Clause Length:
+- Human > AI: AI uses shorter clauses (simpler internal structure)
+- AI > Human: AI inflates clause-internal complexity
+
+Subordination Ratio:
+- Human > AI: Human uses more embedding (complex syntax)
+- AI > Human: AI over-subordinates (excessive embedding)
+- Similar values: Syntactic packaging is preserved
+
+Clause Density (derived: sentence_len / clause_len):
+- AI > Human: More clauses per sentence (packaging difference)
+- Human > AI: More clauses in human text
+- Similar: Sentence length reflects clause length, not clause count
+
+CROSS-LEVEL SYNTHESIS:
+
+Scenario 1: AI longer sentences + similar clause length + higher clause density
+→ AI adds MORE clauses (true packaging difference)
+
+Scenario 2: AI longer sentences + longer clauses + similar clause density
+→ AI inflates WITHIN clauses (verbosity, not structural)
+
+Scenario 3: AI longer sentences + longer clauses + lower clause density
+→ AI uses FEWER but much LONGER clauses (simplified syntax)
+
+PRACTICAL IMPLICATIONS:
+- Addresses "syntactic packaging vs word-form complexity" narrative
+- Shows if Free/Restricted prompts affect structural complexity
+- Reveals whether sentence length differences are superficial or deep
+- Guides prompt engineering: target clause-level vs word-level features
+
+ROBUSTNESS CHECKS:
+This analysis complements:
+- Analysis #03: Shows sentence/word length (surface)
+- Analysis #09: Shows which features discriminate (global)
+- Analysis #20: Shows STRUCTURAL complexity (deep syntax)
+
+Together, they separate:
+- Macro-length (sentence) 
+- Micro-length (word)
+- Structural packaging (clause)
+
+⚠️ INTERPRETATION CAVEAT:
+Clause segmentation in Ancient Greek is non-trivial:
+- Participial phrases may/may not count as clauses
+- Accusative + infinitive constructions are ambiguous
+- Expect some noise in clause boundaries
+
+However, systematic differences between Human and AI are still meaningful
+even if absolute clause counts have measurement error.
+
+STATISTICAL TESTS TO RUN:
+From clause_effect_sizes.csv:
+- Test if subordination_ratio differs: t-test or Welch
+- Test if avg_clause_length differs: t-test
+- Compute correlation between clause metrics and detectability (from #17)
+
+From clause_by_system_prompt.csv:
+- ANOVA: System × Prompt effect on subordination_ratio
+- Post-hoc: Does Restricted compress subordination?
+- Interaction: Does best system depend on prompt?
+
+KEY INSIGHT FOR YOUR NARRATIVE:
+If subordination_ratio and clause_density show large effects but
+avg_word_length does not (from Analysis #03), then:
+
+→ "Stylistic divergence is more about syntactic packaging than 
+   word-form complexity" ✓ CONFIRMED
+
+Use clause_effect_sizes.csv to quantify this claim with Cohen's d values.
+
+RECOMMENDED PLOT FOR PRESENTATION:
+Use **clause_all_features_by_system_prompt.png** - shows all 4 metrics
+in one 2×2 panel with consistent color scheme:
+- Green: Human (baseline)
+- Light Blue: Claude-Free
+- Dark Blue: Claude-Restricted
+- Light Red: GPT-Free
+- Dark Red: GPT-Restricted
+
+Color logic: Same hue per system, darker shade = more restricted prompt
+
+This single slide clearly shows:
+1. Which features differ Human vs AI (compare to green baseline)
+2. Which system performs better (compare blue family to red family)
+3. Whether Restricted compresses toward Human (compare light to dark within each system)
+4. Consistent comparison across all clause metrics
+
+Values are labeled on each bar for precision.
+
+READING THE COLORS:
+- Blues (Claude): Light = Free prompt, Dark = Restricted prompt
+- Reds (GPT): Light = Free prompt, Dark = Restricted prompt
+- If dark bars closer to green → Restricted prompts work better
+- If one color family consistently closer to green → that system works better

@@ -1,0 +1,67 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 09: GLOBAL EFFECT SIZES
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Which stylometric features most distinguish Human from AI overall
+- Effect sizes (Cohen's d) and statistical significance
+- Direction of effects (who uses each feature more)
+
+VARIABLES INVOLVED:
+- Category4 (Label): Human vs AI (aggregated across all conditions)
+- All ~107 numeric stylometric features
+
+CALCULATION:
+For each feature:
+1. Extract values for all Human texts → X
+2. Extract values for all AI texts → Y
+3. Cohen's d = (mean_X - mean_Y) / pooled_SD
+4. Welch's t-test p-value
+
+FILES GENERATED:
+- effect_sizes_all_features.csv - All features ranked by |d|
+- effect_sizes_topK.png - Bar chart of top 30 features
+
+RESEARCH QUESTIONS:
+1. What is the "Human signature" in Ancient Greek?
+2. Which features do AIs struggle with most?
+3. Do AIs overuse or underuse certain constructions?
+
+INTERPRETATION:
+Effect sizes:
+- |d| > 0.8: Large effect, strong discriminator
+- |d| = 0.5-0.8: Medium effect
+- |d| < 0.5: Small effect
+- Positive d: Humans use MORE than AI
+- Negative d: AI uses MORE than humans
+
+CSV columns:
+- feature: Feature name
+- cohens_d_HminusL: Effect size (Human - LLM)
+- welch_p: P-value from Welch's t-test
+- mean_human: Mean value for Human
+- mean_llm: Mean value for AI
+- abs_d: Absolute effect size (for ranking)
+
+EXAMPLE:
+"particle_ἄν", d=0.95, p=0.001, mean_human=2.5, mean_llm=1.2
+→ Humans use particle ἄν significantly more (large effect)
+
+⚠️ LIMITATION:
+Aggregates across systems, prompts, and authors. Doesn't tell you:
+- Which system drives the effect
+- If the effect varies by prompt
+- If some authors show stronger effects
+
+For stratified analysis, see #10-11.
+
+PRACTICAL USE:
+- Identify features for targeted prompt engineering
+- Build AI detection tools
+- Understand overall Human vs AI differences
+
+NEXT STEPS:
+- See #10-11 for system/prompt-specific effects
+- Use top features for feature selection in classifiers
+- Investigate linguistic reasons for large effects

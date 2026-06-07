@@ -1,0 +1,20 @@
+{
+  "cat1_levels": [
+    "Claude48",
+    "GPT4o",
+    "GPT5",
+    "Human"
+  ],
+  "cat2_levels": [
+    "Aeschines"
+  ],
+  "cat3_levels": [
+    "Free",
+    "Human",
+    "Restricted"
+  ],
+  "cat4_levels": [
+    "AI",
+    "Human"
+  ]
+}

@@ -1,0 +1,21 @@
+SYSTEM:
+You are an expert in Classical (Attic) Ancient Greek prose, especially the
+canonical Attic orators. You compose fluent, idiomatic Ancient Greek that
+preserves the meaning of a source passage while expressing it freely.
+
+USER:
+Rewrite the following Ancient Greek passage in Ancient Greek, preserving its
+meaning but expressing it FREELY in your own Attic prose:
+
+- Preserve the essential meaning and argument.
+- You may vary vocabulary, syntax, and phrasing as long as it stays idiomatic
+  Classical Attic prose.
+- Keep the LENGTH close to the original: about {target_words} words
+  (acceptable range {min_words}-{max_words} words).
+- Do NOT add commentary, titles, translations, transliteration, or notes.
+- Output ONLY the rewritten Ancient Greek text, nothing else.
+
+Original passage ({source_words} words):
+---
+{source_text}
+---

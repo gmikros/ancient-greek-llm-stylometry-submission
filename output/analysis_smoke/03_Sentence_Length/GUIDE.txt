@@ -1,0 +1,49 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 03: SENTENCE & WORD LENGTH DISTRIBUTIONS
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Probability density of sentence lengths and word lengths
+- Whether AI rewrites preserve length structure at both levels
+
+VARIABLES INVOLVED:
+- Sentence length feature: avg_sentence, mean_sentence, sent_len, or tokens_per_sentence
+- Word length feature: avg_word, mean_word, word_len, avg_word_length, or mean_word_length
+- Category4 (Label): Human vs AI grouping
+
+FILES GENERATED:
+- distribution_[sentence_column].png - Sentence length histograms
+- distribution_[word_column].png - Word length histograms (if available)
+
+RESEARCH QUESTIONS:
+1. Do AI systems preserve sentence length structure?
+2. Do AI systems preserve word length patterns?
+3. Are there systematic differences in length distributions?
+4. Do the distributions overlap or diverge?
+
+INTERPRETATION TIPS:
+
+Sentence Length:
+- Overlapping distributions: AI preserves sentence structure well
+- AI shifted right: AI uses longer sentences
+- AI shifted left: AI uses shorter sentences
+- Different variance: AI is more/less consistent
+
+Word Length:
+- Overlapping distributions: AI preserves lexical complexity well
+- AI shifted right: AI uses longer/more complex words
+- AI shifted left: AI uses shorter/simpler words
+- Different variance: AI has more/less lexical variety
+
+PRACTICAL IMPLICATIONS:
+- Reveals if AI maintains syntactic complexity (sentence level)
+- Shows if AI preserves lexical sophistication (word level)
+- Suggests if prompts need length constraints
+- Identifies basic stylistic differences at multiple levels
+
+CROSS-LEVEL ANALYSIS:
+- If sentence length differs but word length matches → AI changes sentence structure but not vocabulary
+- If word length differs but sentence length matches → AI changes vocabulary but not syntax
+- If both differ → comprehensive stylistic shift
+- If neither differs → strong preservation of surface structure

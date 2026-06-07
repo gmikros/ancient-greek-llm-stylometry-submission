@@ -1,0 +1,178 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 15: AUTHOR PROXIMITY (GLOBAL)
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- How far each author's AI rewrites are from their human originals
+- Which authors' styles are best/worst preserved by AI overall
+
+VARIABLES INVOLVED:
+- Category2 (Author): 10 Ancient Greek authors
+- Category4 (Label): Human vs AI
+- All numeric features
+
+CALCULATION:
+For each author:
+1. Compute centroid (mean) of all Human originals
+2. For each AI rewrite, compute Canberra distance to centroid
+3. Average all distances for this author
+
+FILES GENERATED:
+- distance_canberra_by_author.csv - Canberra distances per author
+- distance_cosine_distance_by_author.csv - Cosine distance per author
+- distance_euclidean_by_author.csv - Euclidean distances per author
+- distance_manhattan_by_author.csv - Manhattan distances per author
+- distances_all_metrics_by_author.csv - All metrics combined
+- distance_multi_metric_comparison.png - 4 metrics compared (normalized)
+- distance_cosine_distance_by_author.png - **Cosine Distance focus** (sorted bars)
+- distance_heatmap_all_metrics.png - Heatmap (metrics × authors)
+- distance_metric_correlation.png - Scatter (Cosine vs Canberra)
+- proximity_composite_slide.png - **COMPOSITE** (3 bar charts + heatmap)
+
+RESEARCH QUESTIONS:
+1. Which authors are hardest for AI to mimic?
+2. Do more complex/distinctive styles get distorted more?
+3. Overall, how close are AI rewrites to originals?
+
+INTERPRETATION:
+Distance values:
+- Low (< 5): AI rewrites very close to human centroid (good preservation)
+- High (> 10): AI rewrites deviate significantly (poor preservation)
+
+Compare with Analysis #04-06:
+Do JS divergence and Canberra distance agree on difficult authors?
+
+DISTANCE METRICS EXPLAINED:
+
+Canberra Distance:
+- Weighted Manhattan distance
+- Sensitive to small values (good for rare features)
+- Handles features at different scales
+- Traditional choice for stylometry
+
+Cosine Distance (on Stylometric Features):
+- **NOTE**: This is NOT Burrows' Delta/Cosine Delta (which uses word frequencies)
+- Measures angular difference between stylometric feature vectors
+- Range: 0 (identical direction) to 2 (opposite)
+- Ignores magnitude, focuses on pattern
+- Computed on your extracted features (mood, case, particle, etc.)
+
+Euclidean Distance:
+- Straight-line distance in feature space
+- Sensitive to scale differences
+- Standard geometric distance
+
+Manhattan Distance (Cityblock):
+- Sum of absolute differences
+- Less sensitive to outliers than Euclidean
+- Also called L1 distance
+
+VISUALIZATION GUIDE:
+
+distance_cosine_distance_by_author.png:
+- **Horizontal bars** sorted by distance
+- **Green bars** = Below median (closer to human)
+- **Red bars** = Above median (farther from human)
+- **Gray line** = Median distance
+- **Use for presentations**: Clear, sorted ranking
+- **Note**: Uses stylometric features, NOT word frequencies
+
+distance_multi_metric_comparison.png:
+- **4 colored bars per author**
+- All metrics normalized to 0-1 scale
+- Orange = Canberra, Blue = Cosine, Purple = Euclidean, Green = Manhattan
+- Shows if all metrics agree on difficult authors
+
+distance_heatmap_all_metrics.png:
+- **Rows** = Distance metrics (4 rows)
+- **Columns** = Authors (10 columns)
+- **Colors**: Red (far) → Yellow (medium) → Green (close)
+- **Values overlaid** on cells
+- Shows metric-by-author patterns at a glance
+
+distance_metric_correlation.png:
+- **Scatter**: Canberra vs Cosine Distance
+- Tests if metrics agree
+- High correlation → metrics measure same thing
+- Low correlation → metrics capture different aspects
+
+proximity_composite_slide.png:
+- **TOP ROW**: 3 bar charts (Cosine Distance, Canberra, Euclidean)
+- **BOTTOM**: Heatmap of all 4 metrics
+- **Complete story in one slide**
+
+INTERPRETATION:
+
+If all metrics agree (high correlation):
+→ Robust finding: same authors are difficult regardless of metric
+→ Suggests general "complexity" factor
+
+If metrics disagree (low correlation):
+→ Different metrics capture different aspects
+→ Some authors difficult in pattern (Cosine) but not magnitude (Euclidean)
+→ Nuanced preservation patterns
+
+WHY USE MULTIPLE METRICS?
+
+Cosine Distance (Features):
+- Angular distance between feature vectors
+- Focus on stylistic "direction"
+- Pattern-based similarity
+- **NOTE**: Different from Burrows' Cosine Delta (which uses word frequencies)
+
+Canberra:
+- Good for features with rare values (particles, rare moods)
+- Previous research on Ancient Greek
+
+Euclidean:
+- Overall feature space distance
+- Combines all dimensions equally
+
+Together:
+- Triangulate on true proximity
+- Validate findings across metrics
+- Address reviewer concerns about metric choice
+
+⚠️ LIMITATION:
+Aggregates all AI rewrites (both systems, both prompts).
+See Analysis #16 for stratified version.
+
+PRACTICAL USE:
+- Identify authors needing special handling
+- Prioritize which authors to focus on for improvement
+- Understand style complexity effects
+- Validate with multiple standard metrics
+
+IMPORTANT CLARIFICATION:
+
+The "Cosine Distance" metric here is computed on STYLOMETRIC FEATURES 
+(mood percentages, case distributions, etc.), NOT on word frequencies.
+
+This is DIFFERENT from:
+- Burrows' Delta (uses word frequencies)
+- Cosine Delta (authorship attribution standard on word frequencies)
+
+Our cosine distance measures:
+→ Angular difference between feature vectors
+→ Whether AI preserves the PATTERN of features
+→ Valid geometric distance, but not the classical "Delta" measure
+
+For true Burrows'/Cosine Delta, you would need:
+→ Raw text access
+→ Word frequency extraction
+→ Top 100-5000 most frequent words
+→ Delta calculation on word distributions
+
+RECOMMENDED FOR PRESENTATION:
+- Use **proximity_composite_slide.png** for complete view
+- Focus on **Canberra** (traditional stylometry choice)
+- Or use **distance_cosine_distance_by_author.png** (pattern-based distance)
+- **Clarify** it's on features, not words
+
+NEXT STEPS:
+- See #16 for system×prompt stratification
+- Cross-reference with #04-06 (JS by author)
+- Check if Cosine Distance and Canberra agree
+- Investigate why certain authors are difficult
+- Consider adding true Burrows' Delta if text access available

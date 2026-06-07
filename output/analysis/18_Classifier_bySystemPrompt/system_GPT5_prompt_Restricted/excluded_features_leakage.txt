@@ -1,0 +1,45 @@
+EXCLUDED FEATURES (Data Leakage Detection)
+======================================================================
+
+These features were excluded to prevent data leakage.
+They show perfect/near-perfect separation that likely reflects
+preprocessing artifacts rather than true stylometric differences.
+
+pos_PART:
+  Reason: Constant in Human group (only 1 unique)
+
+pos_PUNCT:
+  Reason: Constant in Human group (only 1 unique)
+
+pos_X:
+  Reason: Constant in Human group (only 1 unique)
+
+aspect_Aor:
+  Reason: Constant in Human group (only 1 unique)
+
+dep_rel_iobj:
+  Reason: Constant in Human group (only 1 unique)
+
+dep_rel_punct:
+  Reason: Constant in Human group (only 1 unique)
+
+dep_rel_flat:
+  Reason: Constant in Human group (only 1 unique)
+
+
+======================================================================
+Total excluded: 7
+Features used for classification: 69
+
+CATEGORIES OF EXCLUDED FEATURES:
+
+Punctuation-related (2):
+  - pos_PUNCT
+  - dep_rel_punct
+
+Other (5):
+  - pos_PART
+  - pos_X
+  - aspect_Aor
+  - dep_rel_iobj
+  - dep_rel_flat

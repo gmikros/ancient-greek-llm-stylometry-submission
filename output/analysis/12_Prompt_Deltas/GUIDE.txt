@@ -1,0 +1,54 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 12: PROMPT DELTAS (RESTRICTED - FREE)
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Direct comparison of Free vs Restricted prompting strategies
+- Which features increase/decrease with stricter prompting
+- Magnitude of prompt effects
+
+VARIABLES INVOLVED:
+- Category3 (Prompt): Free vs Restricted
+- Category4 (Label): AI texts only (Human excluded)
+- All numeric features
+
+CALCULATION:
+For each feature:
+1. Mean value for "Restricted" AI texts → M_restricted
+2. Mean value for "Free" AI texts → M_free
+3. Delta = M_restricted - M_free
+
+FILES GENERATED:
+- prompt_deltas.csv - Deltas for all features
+- prompt_deltas_top.png - Bar chart of top/bottom 15
+
+RESEARCH QUESTIONS:
+1. What changes with prompt strictness?
+2. Does restricting prompts make AI more/less human-like?
+3. Are prompt effects large or subtle?
+
+INTERPRETATION:
+- Positive delta: Restricted prompts INCREASE this feature
+- Negative delta: Restricted prompts DECREASE this feature
+- Large |delta|: Feature is very sensitive to prompt
+- Small |delta|: Feature is robust to prompt variation
+
+EXAMPLE:
+"case_genitive", delta=+0.8, mean_restricted=5.3, mean_free=4.5
+→ Restricted prompts lead to MORE genitive case usage
+
+CROSS-REFERENCE WITH #09:
+- High effect size in #09 AND high |delta| here → 
+  prompt strategy strongly affects human-likeness of this feature
+- High effect size but low |delta| → 
+  feature is problematic regardless of prompt
+
+PRACTICAL USE:
+- Optimize prompt engineering
+- Understand which features prompts can/can't control
+- Design targeted prompts for specific features
+
+AGGREGATION NOTE:
+Aggregates across systems and authors. To separate Claude vs GPT,
+cross-reference with Analysis #11 (effects by prompt).

@@ -1,0 +1,7 @@
+{
+  "AUROC": 0.7104770513433778,
+  "Brier": 0.1527128554486907,
+  "CV_method": "GroupKFold (n=5 groups by author)",
+  "n_samples": 6610,
+  "n_features": 50
+}

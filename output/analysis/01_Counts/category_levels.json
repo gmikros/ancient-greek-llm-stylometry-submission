@@ -1,0 +1,28 @@
+{
+  "cat1_levels": [
+    "Claude48",
+    "GPT5",
+    "Human"
+  ],
+  "cat2_levels": [
+    "Aeschines",
+    "Andocides",
+    "Antiphon",
+    "Demosthenes",
+    "Dinarchus",
+    "Hyperides",
+    "Isaeus",
+    "Isocrates",
+    "Lycurgus",
+    "Lysias"
+  ],
+  "cat3_levels": [
+    "Free",
+    "Human",
+    "Restricted"
+  ],
+  "cat4_levels": [
+    "AI",
+    "Human"
+  ]
+}

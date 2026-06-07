@@ -1,0 +1,40 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 01: FOUR-WAY COUNTS
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Sample sizes for each condition
+- Balance of your experimental design
+- Which author-system-prompt combinations exist in your data
+
+VARIABLES INVOLVED:
+- Category1 (System): Claude, GPT, Human
+- Category2 (Author): Aeschines, Andocides, Antiphon, Demosthenes, 
+                      Dinarchus, Hyperides, Isaeus, Isocrates, Lycurgus, Lysias
+- Category3 (Prompt): Free, Restricted, Human
+- Category4 (Label): AI, Human
+
+FILES GENERATED:
+- category_levels.json - All unique values in each category
+- cat1_counts.csv/png - Distribution by System
+- cat2_counts.csv/png - Distribution by Author
+- cat3_counts.csv/png - Distribution by Prompt
+- cat4_counts.csv/png - Distribution by AI/Human label
+- *_crosstab.csv/png - Two-way combinations
+
+RESEARCH QUESTIONS:
+1. Is my dataset balanced? Do I have similar numbers across conditions?
+2. Which author × system × prompt combinations are present?
+3. Does my data structure match my intended experimental design?
+
+INTERPRETATION TIPS:
+- Look for empty cells in crosstabs (missing combinations)
+- Check for severe imbalances that might affect statistical power
+- Verify all 10 authors have both originals and AI rewrites
+- Minimum 20-30 samples per author recommended
+
+NEXT STEPS:
+- If imbalanced: Consider stratified sampling or weighted analyses
+- If missing combinations: Adjust research questions accordingly
+- Proceed to Analysis #02 for descriptive statistics

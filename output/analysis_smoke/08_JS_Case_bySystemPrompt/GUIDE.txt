@@ -1,0 +1,152 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 07-08: JS DIVERGENCE BY SYSTEM × PROMPT
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- STRATIFIED JS divergence: Each system×prompt combination compared 
+  to Human originals separately
+- Which system (Claude vs GPT) better preserves style
+- Which prompt strategy (Free vs Restricted) is more faithful
+- How these effects vary by author
+
+VARIABLES INVOLVED:
+- Category1 (System): Claude, GPT
+- Category2 (Author): 10 authors
+- Category3 (Prompt): Free, Restricted
+- Category4 (Label): Human vs AI
+- Feature family: mood_ or case_ features
+
+CALCULATION:
+For each author × system × prompt:
+1. Get Human originals for this author → distribution P
+2. Get AI rewrites for this specific system+prompt → distribution Q
+3. Compute JS(P||Q)
+
+Example: Demosthenes-Claude-Free vs Demosthenes originals
+
+FILES GENERATED:
+- js_by_system_prompt_author.csv - Long-format table (author×system×prompt×JS)
+- js_system_prompt_heatmap.png - Heatmap (rows=system×prompt, cols=authors)
+- js_boxplot_by_system_prompt.png - Box plots showing variability across authors
+- js_prompt_effect_slopes.png - Slope graph (Free→Restricted per author)
+- js_combined_slide.png - **PRESENTATION SLIDE** (by-author + system×prompt in one)
+
+RESEARCH QUESTIONS:
+1. Is Claude or GPT better at preserving Ancient Greek style?
+2. Do Free or Restricted prompts allow closer mimicry?
+3. Does the best system depend on the prompt? (interaction effects)
+4. Are some authors better preserved by specific configurations?
+
+INTERPRETATION:
+Heatmap patterns:
+- Darker colors = higher divergence (worse preservation)
+- Lighter colors = lower divergence (better preservation)
+- Compare rows: Which system×prompt is consistently best?
+- Compare columns: Which authors are consistently difficult?
+- Look for interactions: Is Claude-Free best for some, GPT-Restricted for others?
+
+STATISTICAL ANALYSIS YOU CAN DO:
+From the CSV:
+- Two-way ANOVA: Effect of System, Prompt, and interaction
+- Post-hoc tests: Pairwise comparisons
+- Author-specific tests: Does pattern vary by author?
+
+⚠️ THIS IS A PRIMARY ANALYSIS:
+Use this for hypothesis testing about system and prompt effects.
+This respects your experimental design fully.
+
+PRACTICAL IMPLICATIONS:
+- Identifies best system×prompt for Ancient Greek rewriting
+- Guides prompt engineering strategies
+- Reveals which features each system handles well/poorly
+
+ADDITIONAL VISUALIZATIONS:
+
+Box Plot (js_boxplot_by_system_prompt.png):
+- Shows JSD distribution across authors (not just mean)
+- Boxes reveal variability and outliers
+- Wider boxes = inconsistent across authors
+- Narrow boxes = consistent preservation quality
+
+Slope Plot (js_prompt_effect_slopes.png):
+- Each line = one author
+- Left point = Free prompt JSD
+- Right point = Restricted prompt JSD
+- Downward slope → Restricted improves (lowers JSD)
+- Upward slope → Restricted worsens (raises JSD)
+- Thick lines = system averages
+- Light blue/red = individual authors (Claude/GPT)
+- Dark blue/red = system averages
+
+INTERPRETATION OF SLOPES:
+- Most lines slope down → Restricted generally better
+- Most lines slope up → Free generally better
+- Lines cross each other → prompt effect varies by author
+- Parallel lines → consistent prompt effect
+
+RECOMMENDED FOR PRESENTATION:
+
+Use **js_combined_slide.png** - perfect for your JSD slides (Moods/Cases/Particles):
+
+LAYOUT: VERTICAL (12" × 12")
+┌─────────────────────────────────────┐
+│ (A) Authorial Signature Strength    │
+│     [Bar Chart - 10 authors]        │
+│                                     │
+├─────────────────────────────────────┤
+│ (B) System × Prompt Performance     │
+│     [Heatmap - 4×10]                │
+│                                     │
+└─────────────────────────────────────┘
+
+TOP PANEL (A): Authorial Signature Strength
+- Bar chart showing JSD per author (aggregated across all AI)
+- 🔴 Red bars = above mean JSD (strong signature, hard to mimic)
+- 🔵 Blue bars = below mean JSD (weak signature, easy to mimic)
+- Gray dashed line = mean JSD across all authors
+- **Talking point**: "Feature distribution is a strong authorial signature"
+
+BOTTOM PANEL (B): System × Prompt Performance per Author
+- Heatmap showing which combination gets closest
+- **Rows** (4): Claude-Free, Claude-Restricted, GPT-Free, GPT-Restricted
+- **Columns** (10): All authors (same order as top panel)
+- 🟡 Light yellow = Excellent preservation (low JSD)
+- 🟠 Orange = Moderate preservation
+- 🔴 Red = Poor preservation (high JSD)
+- **Talking point**: "Surface which combination gets closest"
+
+VERTICAL LAYOUT BENEFITS:
+- ✓ Standard slide format (portrait-friendly)
+- ✓ Both panels share X-axis (authors) - easy vertical comparison
+- ✓ Natural narrative flow: Overview (top) → Detail (bottom)
+- ✓ Better for projection screens
+- ✓ Easy to spot: "Author X has red bar in top → find best config in bottom"
+
+WHAT THIS SINGLE SLIDE SHOWS:
+1. Authorial signature exists and varies (top panel - bar height variation)
+2. Which authors are hardest to mimic (top panel - tallest red bars)
+3. Best system×prompt for EACH author (bottom panel - lightest cell per column)
+4. Overall best configuration (bottom panel - row with most light colors)
+
+HOW TO READ IT:
+Step 1: Look at top panel → identify difficult authors (red/high bars)
+Step 2: Look at bottom panel, same column → see which config works for that author
+Step 3: Compare across columns → find configuration that works broadly
+
+ALTERNATIVE SLIDES:
+
+For "authorial signature" emphasis:
+→ Use js_divergence_by_author_bars.png from folder #04
+
+For "prompt effect" emphasis:
+→ Use js_prompt_effect_slopes.png (shows Free→Restricted change)
+
+For "consistency" emphasis:
+→ Use js_boxplot_by_system_prompt.png (shows variability)
+
+NEXT STEPS:
+- Perform ANOVA on the CSV file
+- Cross-reference with Analysis #16 (author proximity by system×prompt)
+- Compare with Analysis #18 (classifier by system×prompt)
+- See Analysis #19 for cross-family comparisons

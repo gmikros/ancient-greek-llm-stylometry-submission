@@ -1,0 +1,127 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 18: CLASSIFIER PER SYSTEM × PROMPT
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Condition-specific detectability: How detectable is each 
+  system×prompt combination?
+- Which configurations produce more human-like texts
+- Interaction between system and prompt in detectability
+
+VARIABLES INVOLVED:
+- Category1 (System): Stratification variable
+- Category3 (Prompt): Stratification variable
+- Category4 (Label): Human vs AI
+- All numeric features
+
+CALCULATION:
+For each system × prompt:
+1. Subset: Human texts + AI texts from this specific condition
+2. Train classifier (same method as #17)
+3. Evaluate AUROC and Brier score
+
+FILES GENERATED (per condition):
+Subfolders: system_[X]_prompt_[Y]/
+- roc_curve.png - Enhanced with classifier & CV info
+- calibration_curve.png - Enhanced with classifier & CV info
+- roc_calibration_combined.png - Combined view
+- prediction_distribution.png - Prediction histogram
+- cv_probs.csv - Probabilities
+- metrics.json - Enhanced with full details
+
+FILES GENERATED (main folder - comparison across conditions):
+- performance_comparison_all_conditions.csv - All metrics in one table
+- performance_heatmap_system_prompt.png - **Heatmap** (AUROC & Brier)
+- performance_bars_comparison.png - **Bar charts** (AUROC & Brier)
+- performance_interaction_plot.png - **Interaction plot** (line graph)
+
+RESEARCH QUESTIONS:
+1. Is Claude or GPT more detectable?
+2. Do Free or Restricted prompts produce more detectable texts?
+3. Does detectability depend on system×prompt combination?
+4. Which configuration produces least detectable AI?
+
+INTERPRETATION:
+Compare AUROC across conditions:
+- Lowest AUROC = most human-like (hardest to detect)
+- Highest AUROC = most AI-like (easiest to detect)
+
+Look for interactions:
+- If Claude-Free has low AUROC but Claude-Restricted high → 
+  prompt matters for Claude
+- If systems respond differently to prompts → interaction
+
+EXAMPLE:
+Claude-Free: AUROC = 0.75 (best - least detectable)
+GPT-Free: AUROC = 0.88 (worst - most detectable)
+→ Claude with Free prompts is hardest to detect
+
+PRACTICAL IMPLICATIONS:
+✓ DIRECT ANSWER TO: "Which system and prompt make AI hardest to detect?"
+- Guide system choice for authentic-seeming Ancient Greek
+- Reveal which configurations need improvement
+- Inform adversarial robustness (if building detectors)
+
+THIS IS A PRIMARY ANALYSIS:
+Use for hypothesis testing about system and prompt effects.
+Fully stratified, respects your experimental design.
+
+CROSS-REFERENCE:
+- Compare with #07-08 (JS by system×prompt)
+- Compare with #16 (proximity by system×prompt)
+- All three should agree on best configuration
+
+COMPARISON VISUALIZATIONS (NEW):
+
+performance_heatmap_system_prompt.png:
+- **2 heatmaps side-by-side**
+- **Left**: AUROC (green=low/good, red=high/bad)
+- **Right**: Brier (green=low/good, red=high/bad)
+- **Shows**: Which cell (system×prompt) performs best/worst
+- **Values overlaid** for precision
+
+INTERPRETATION:
+- **Greenest cell in AUROC**: Hardest to detect (best AI)
+- **Reddest cell in AUROC**: Easiest to detect (worst AI)
+- **Check if same cell green in both**: Both discrimination and calibration good
+
+performance_bars_comparison.png:
+- **2 bar charts side-by-side**
+- **Left**: AUROC by condition (lower = better AI)
+- **Right**: Brier by condition (lower = better)
+- **Colors**: Match system×prompt scheme
+- **Values labeled** on bars
+
+USE FOR:
+- Quick comparison across all 4 conditions
+- Spot best/worst configuration
+- Presentation-friendly
+
+performance_interaction_plot.png:
+- **Line graph**: X=Prompt, Y=AUROC
+- **Blue line**: Claude (Free → Restricted)
+- **Red line**: GPT (Free → Restricted)
+- **Shows**: Interaction between system and prompt
+
+INTERPRETATION:
+- **Parallel lines**: Prompt has same effect on both systems
+- **Crossing lines**: INTERACTION! Effect of prompt depends on system
+- **Downward slope**: Restricted reduces detectability (good)
+- **Upward slope**: Restricted increases detectability (bad)
+- **Flat line**: Prompt doesn't matter for this system
+
+EXAMPLE:
+```
+Claude: Free (0.82) → Restricted (0.75)  [downward]
+GPT:    Free (0.88) → Restricted (0.85)  [downward]
+→ Both systems: Restricted helps (lowers AUROC)
+→ Parallel slopes: Consistent prompt effect
+```
+
+PRACTICAL USE:
+- System selection for generation tasks
+- Prompt engineering optimization
+- Understanding detectability trade-offs
+- **Identify best configuration** (lowest AUROC)
+- **Test for interactions** (do effects depend on each other?)

@@ -1,0 +1,38 @@
+{
+  "chosen_size": 150,
+  "reason": "smallest size with tol_rate>=0.8",
+  "min_tol_rate": 0.8,
+  "model": "gpt-5.5",
+  "summary": [
+    {
+      "size": 150,
+      "n": 3,
+      "tol_rate": 1.0,
+      "mean_abs_dev": 0.015555555555555545,
+      "median_ratio": 1.02,
+      "fidelity": 0.6202881642652978,
+      "mean_attempts": 1.0,
+      "fail_rate": 0.0
+    },
+    {
+      "size": 250,
+      "n": 3,
+      "tol_rate": 0.6666666666666666,
+      "mean_abs_dev": 0.3373333333333333,
+      "median_ratio": 1.004,
+      "fidelity": 0.43844938913922055,
+      "mean_attempts": 1.0,
+      "fail_rate": 0.3333333333333333
+    },
+    {
+      "size": 400,
+      "n": 3,
+      "tol_rate": 1.0,
+      "mean_abs_dev": 0.01166666666666664,
+      "median_ratio": 1.0125,
+      "fidelity": 0.6865358810914883,
+      "mean_attempts": 1.0,
+      "fail_rate": 0.0
+    }
+  ]
+}

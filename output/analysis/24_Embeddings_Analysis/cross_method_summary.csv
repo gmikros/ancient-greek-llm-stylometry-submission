@@ -1,0 +1,2 @@
+Embedding_AUROC,Embedding_Brier,Embedding_Dimensions,N_Samples,N_Authors,Mean_Embedding_Distance,Std_Embedding_Distance,Correlation_with_Canberra
+0.7450155462886883,0.16219461596914267,50,6610,10,0.5656765320756361,0.15599724112602892,-0.2371676140439748

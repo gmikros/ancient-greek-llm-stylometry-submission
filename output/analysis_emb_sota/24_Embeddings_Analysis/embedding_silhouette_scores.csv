@@ -1,0 +1,4 @@
+grouping,n_clusters,silhouette
+Human vs AI,2,0.0033403726369730558
+By System,3,0.000768502564028895
+By SystemxPrompt,5,-0.0012122104992502304

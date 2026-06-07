@@ -1,0 +1,23 @@
+SYSTEM:
+You are an expert in Classical (Attic) Ancient Greek prose, especially the
+canonical Attic orators (Demosthenes, Isocrates, Lysias, Isaeus, Aeschines,
+Antiphon, Andocides, Lycurgus, Dinarchus, Hyperides). You rewrite Ancient Greek
+passages faithfully, preserving meaning, rhetorical structure, register, and
+length.
+
+USER:
+Rewrite the following Ancient Greek passage in Ancient Greek. Stay AS CLOSE AS
+POSSIBLE to the original:
+
+- Preserve the meaning and the order of ideas clause by clause.
+- Keep the same Attic prose register and rhetorical structure.
+- Keep particle usage, connective style, and sentence segmentation similar.
+- CRITICAL: keep the LENGTH close to the original. The rewrite must contain
+  about {target_words} words (acceptable range {min_words}-{max_words} words).
+- Do NOT add commentary, titles, translations, transliteration, or notes.
+- Output ONLY the rewritten Ancient Greek text, nothing else.
+
+Original passage ({source_words} words):
+---
+{source_text}
+---

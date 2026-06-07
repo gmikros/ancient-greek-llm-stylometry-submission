@@ -1,0 +1,61 @@
+{
+  "files": {
+    "master_137": {
+      "path": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\Data\\Stylometrics_Ancient_Greek_20250321_122021.xlsx",
+      "shape": [
+        594,
+        137
+      ],
+      "has_text_file": true,
+      "category1": null
+    },
+    "labeled_112": {
+      "path": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\Data\\Stylometrics_Ancient_Greek.xlsx",
+      "shape": [
+        594,
+        112
+      ],
+      "has_text_file": false,
+      "category1": [
+        "Claude",
+        "GPT",
+        "Human"
+      ]
+    },
+    "features_131": {
+      "path": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\Data\\greek_stylo_features.xlsx",
+      "shape": [
+        645,
+        131
+      ],
+      "has_text_file": false,
+      "category1": [
+        "CLAUDE",
+        "GPT",
+        "HUMAN"
+      ]
+    }
+  },
+  "canonical": {
+    "path": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\ag-llm-stylometry\\data\\features\\legacy_canonical.csv",
+    "shape": [
+      594,
+      141
+    ],
+    "counts_by_system": {
+      "Claude": 238,
+      "GPT": 237,
+      "Human": 119
+    }
+  },
+  "verification": {
+    "length": {
+      "n_tokens_min": 275.0,
+      "n_tokens_max": 37106.0,
+      "n_tokens_mean": 4294.223905723906
+    },
+    "human_vs_ai_cohens_d": {
+      "lexical_density": 0.33466885617276093
+    }
+  }
+}

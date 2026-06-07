@@ -1,0 +1,8 @@
+IMPORTANT: This analysis aggregates ALL AI rewrites (all systems and prompts) per author.
+This provides an overall Human-vs-AI comparison but may mask differences between:
+  - Different systems (Claude vs GPT)
+  - Different prompts (Free vs Restricted)
+
+For stratified analysis, see:
+  - 07_JS_Mood_bySystemPrompt/
+  - 08_JS_Case_bySystemPrompt/

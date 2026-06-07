@@ -1,0 +1,18 @@
+{
+  "title": "Ancient Greek LLM Stylometry: an LREC Resource and Evaluation",
+  "upload_type": "dataset",
+  "description": "A chunk-level corpus and evaluation of state-of-the-art LLM-generated Ancient Greek (GPT-5.5, Claude 4.8; with GPT-4o and Claude 3.5 as a longitudinal baseline) compared stylometrically and linguistically to human Attic orators. Includes code, prompts, feature-extraction and embedding pipelines, and analyses.",
+  "license": "CC-BY-SA-4.0",
+  "access_right": "open",
+  "creators": [
+    {"name": "Mikros, George"}
+  ],
+  "keywords": [
+    "Ancient Greek",
+    "stylometry",
+    "large language models",
+    "language resource",
+    "computational linguistics",
+    "authorship analysis"
+  ]
+}

@@ -1,0 +1,116 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 17: CLASSIFIER (GLOBAL)
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Overall detectability of AI-generated texts
+- How well machine learning can distinguish Human from AI
+- Classifier calibration (are probabilities trustworthy?)
+
+VARIABLES INVOLVED:
+- Category4 (Label): Human (0) vs AI (1)
+- All ~107 numeric features
+- Optional: Category2 (Author) for grouped cross-validation
+
+CALCULATION:
+1. Cross-validation:
+   - If author available: GroupKFold (no author leakage)
+   - Otherwise: StratifiedKFold (5-fold)
+2. Per fold:
+   - Fit StandardScaler on training data only
+   - Fit LogisticRegression on scaled training data
+   - Predict probabilities on scaled test data
+3. Evaluate: ROC curve, AUROC, calibration, Brier score
+
+FILES GENERATED:
+- roc_curve.png - ROC curve with AUROC (includes classifier & CV method)
+- calibration_curve.png - Calibration plot (includes classifier & CV method)
+- roc_calibration_combined.png - **COMBINED** (ROC + Calibration side-by-side)
+- prediction_distribution.png - **NEW** (histogram of predictions by true label)
+- cv_probs.csv - Predicted probabilities per text
+- metrics.json - AUROC, Brier, CV method, classifier name, sample size
+
+RESEARCH QUESTIONS:
+1. Can we reliably distinguish AI from Human based on style?
+2. Is there a clear stylistic boundary?
+3. Are predicted probabilities trustworthy?
+
+INTERPRETATION:
+AUROC (Area Under ROC Curve):
+- 1.0: Perfect classification (never in practice)
+- 0.9-1.0: Excellent (strong AI signature)
+- 0.8-0.9: Good (detectable differences)
+- 0.7-0.8: Fair (subtle differences)
+- 0.5: Random guessing (no signal)
+
+Calibration Curve:
+- On diagonal: Well-calibrated (predicted = actual)
+- Above diagonal: Under-confident
+- Below diagonal: Over-confident
+
+Brier Score:
+- 0: Perfect probabilistic predictions
+- < 0.1: Excellent calibration
+- 0.25: Random guessing
+
+PRACTICAL IMPLICATIONS:
+- High AUROC: AI detectable → authenticity verification possible
+- Low AUROC: AI mimics well → impressive generation quality
+- Poor calibration: Don't trust probabilities literally (but ranking OK)
+
+⚠️ LIMITATION:
+Aggregates all AI (both systems, prompts, authors). Doesn't tell you:
+- If Claude is more detectable than GPT
+- If Free prompts are more detectable than Restricted
+
+See Analysis #18 for stratified version.
+
+ADDITIONAL VISUALIZATIONS:
+
+roc_calibration_combined.png:
+- **Layout**: 2 panels side-by-side
+- **Panel A**: ROC curve with AUROC
+- **Panel B**: Calibration curve with Brier score
+- **Suptitle**: Includes classifier name, CV method, n samples, n features
+- **USE FOR PRESENTATIONS**: Complete performance in one slide
+
+prediction_distribution.png:
+- **Histogram**: Predicted probabilities
+- **Green**: True Human samples (should cluster near 0)
+- **Red**: True AI samples (should cluster near 1)
+- **Black dashed line**: 0.5 decision threshold
+- **Shows**: How well-separated the predictions are
+
+INTERPRETATION:
+
+Prediction Distribution:
+- **Good separation**: Green clustered left (0-0.3), Red clustered right (0.7-1.0)
+  → Classifier confidently distinguishes groups
+  → Few ambiguous cases
+  
+- **Moderate overlap**: Some green near 0.5, some red near 0.5
+  → Classifier uncertain for some texts
+  → Harder classification task
+  
+- **Poor separation**: Distributions heavily overlap
+  → Classifier struggles
+  → Low AUROC expected
+
+CLASSIFIER & CV METHOD INFO:
+All graphs now show:
+- **Classifier**: Logistic Regression (L2 regularization, liblinear solver)
+- **CV Method**: GroupKFold (by author) or StratifiedKFold
+- **Sample size**: Number of texts in analysis
+- **Feature count**: Number of stylometric features used
+
+This transparency helps:
+- Reproducibility
+- Method validation
+- Comparison with other studies
+
+PRACTICAL USE:
+- Assess overall AI detectability
+- Build AI detection systems
+- Understand Human-AI stylistic gap
+- **Validate** that classifier distinguishes cleanly (prediction histogram)

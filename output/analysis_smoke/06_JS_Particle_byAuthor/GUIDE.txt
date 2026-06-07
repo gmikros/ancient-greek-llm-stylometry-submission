@@ -1,0 +1,65 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 04-06: JS DIVERGENCE BY AUTHOR
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Jensen-Shannon divergence between Human originals and ALL AI rewrites 
+  combined (Claude+GPT, Free+Restricted) per author
+- Which authors show larger/smaller stylistic shifts
+- AGGREGATED measure across all systems and prompts
+
+VARIABLES INVOLVED:
+- Category2 (Author): 10 Ancient Greek authors
+- Category4 (Label): Human vs AI
+- Feature family: mood_, case_, or particle_ features
+
+CALCULATION:
+For each author:
+1. Sum feature values across Human originals → distribution P
+2. Sum feature values across ALL AI rewrites → distribution Q
+3. Compute JS(P||Q) = divergence between distributions
+
+FILES GENERATED:
+- js_divergence_by_author.csv - JS values per author
+- js_divergence_heatmap.png - Visual heatmap (1 row × authors)
+- js_divergence_by_author_bars.png - Bar chart (better for authorial signature)
+- NOTE.txt - IMPORTANT WARNING about aggregation
+
+RESEARCH QUESTIONS:
+1. Which authors' styles are most/least preserved by AI overall?
+2. Are some authors' linguistic fingerprints more "AI-resistant"?
+3. Do mood/case/particle patterns degrade differently?
+
+INTERPRETATION:
+- Low JS (< 0.1): AI closely mimics this author's style
+- High JS (> 0.3): AI significantly deviates from this author's style
+- Compare across features: Different features may show different patterns
+
+⚠️ IMPORTANT LIMITATION:
+This analysis AGGREGATES all AI rewrites. It does NOT tell you:
+- If Claude is better than GPT
+- If Free prompts preserve style better than Restricted
+- For stratified analysis, see Analyses #07-08
+
+INTERPRETATION:
+- Low JS (< 0.1): AI closely mimics this author's style
+- High JS (> 0.3): AI significantly deviates from this author's style
+- Compare across features: Different features may show different patterns
+
+Bar Chart (js_divergence_by_author_bars.png):
+- **Red bars**: Authors with above-average JSD (strong signature, hard to mimic)
+- **Blue bars**: Authors with below-average JSD (weak signature, easy to mimic)
+- **Gray dashed line**: Mean JSD across all authors
+- **Use for presentations**: Clearer than heatmap for showing authorial variation
+
+WHEN TO USE:
+- Initial exploration: "Which authors should I focus on?"
+- Overall effect size: "Is AI generally good at mimicking?"
+- Identifying outlier authors for further investigation
+- **For slides**: Use bar chart to emphasize "mood is authorial signature"
+
+NEXT STEPS:
+- See Analysis #07-08 for system×prompt stratification
+- Cross-reference with Analysis #15 (author proximity)
+- Use js_divergence_by_author_bars.png for "authorial signature" narrative

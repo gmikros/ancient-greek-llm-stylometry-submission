@@ -1,0 +1,103 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 19: COMPREHENSIVE JSD VISUALIZATIONS
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Cross-family comparison of JSD (mood vs case vs particle)
+- Author ranking by overall stylistic preservation
+- Correlation patterns across linguistic dimensions
+- Multi-dimensional author profiles
+
+VARIABLES INVOLVED:
+- Category2 (Author): 10 Ancient Greek authors
+- Category4 (Label): Human vs AI
+- Feature families: mood, case, particle
+
+FILES GENERATED:
+- js_by_author_all_families.csv - JSD for all families per author
+- js_author_ranking.png - Authors ranked by average JSD (horizontal bar)
+- js_by_family_per_author.png - Grouped bars (3 families per author)
+- js_correlation_across_families.png - Correlation heatmap
+- js_correlation_matrix.csv - Correlation values
+- js_mood_vs_case_scatter.png - 2D scatter with author labels
+
+RESEARCH QUESTIONS:
+1. Which authors are hardest/easiest to mimic overall?
+2. Are mood, case, and particle equally difficult to preserve?
+3. If an author is difficult in one dimension, are they difficult in all?
+4. Do different feature families show independent patterns?
+
+INTERPRETATION:
+
+Author Ranking Plot (js_author_ranking.png):
+- Lower values = better AI preservation of style
+- Higher values = AI struggles with this author
+- Use to identify outlier authors (very easy/hard to mimic)
+
+Feature Family Comparison (js_by_family_per_author.png):
+- 3 bars per author (orange=mood, blue=case, purple=particle)
+- If bars are similar height → consistent difficulty across families
+- If one bar much taller → specific feature family is problematic
+- Pattern across authors reveals systematic weaknesses
+
+Correlation Matrix (js_correlation_across_families.png):
+- High correlation (>0.7): Families behave similarly
+  → Authors difficult in mood are also difficult in case
+  → Suggests general "complexity" factor
+- Low correlation (<0.3): Families are independent
+  → Mood difficulty ≠ case difficulty
+  → Suggests feature-specific preservation
+
+Mood vs Case Scatter (js_mood_vs_case_scatter.png):
+- Points above diagonal: Case harder than Mood for this author
+- Points below diagonal: Mood harder than Case
+- Points near diagonal: Equally difficult
+- Clusters reveal author groups with similar patterns
+
+PRACTICAL IMPLICATIONS:
+
+High Correlation Scenario:
+→ Authors have general "imitability" factor
+→ Focus on overall style preservation strategies
+→ Difficult authors need comprehensive prompt engineering
+
+Low Correlation Scenario:
+→ Feature families are independently preserved
+→ Can target specific families (e.g., improve mood without affecting case)
+→ Flexible prompt engineering possible
+
+CROSS-REFERENCE:
+- Compare author ranking with Analysis #15 (author proximity)
+- Check if JSD and Canberra distance agree on difficult authors
+- Use family comparison to guide targeted analyses
+
+STATISTICAL TESTS:
+From js_by_author_all_families.csv:
+- Test if mood > case > particle (repeated measures ANOVA)
+- Identify authors with significantly higher JSD
+- Compute reliability (Cronbach's alpha across families)
+
+From js_correlation_matrix.csv:
+- Test if correlations are significant
+- Compare to null hypothesis (independent families)
+
+KEY INSIGHTS FOR PRESENTATION:
+
+Use js_by_family_per_author.png to show:
+"Not all features are equally difficult - some authors show
+ mood divergence but preserve case structure"
+
+Use js_author_ranking.png to show:
+"Authors vary in 'imitability' from X (easiest) to Y (hardest)"
+
+Use js_correlation_across_families.png to show:
+"Feature families are [highly correlated / independent], suggesting
+ [general complexity / feature-specific] preservation mechanisms"
+
+NARRATIVE SUPPORT:
+If particle JSD is consistently lower than mood/case:
+→ "Particles are easier to mimic than inflectional morphology"
+
+If some authors have high mood JSD but low case JSD:
+→ "Preservation quality is feature-dependent, not author-dependent"

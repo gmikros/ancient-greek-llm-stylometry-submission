@@ -1,0 +1,154 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 10-11: EFFECT SIZES BY SYSTEM / PROMPT
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Which features distinguish Human from EACH AI system separately
+- Whether Claude and GPT fail at the same features or different ones
+- Comparative effect sizes across systems/prompts
+
+VARIABLES INVOLVED:
+- Category1 (System) or Category3 (Prompt): Stratification variable
+- Category4 (Label): Human vs AI
+- All numeric features
+
+CALCULATION:
+For each system/prompt:
+1. Human texts → X
+2. Texts from THIS system/prompt (aggregated across other factors) → Y
+3. Compute Cohen's d for each feature
+
+FILES GENERATED:
+- effect_sizes_Category[X]_[Level].csv - Per level (Claude, GPT, Free, Restricted, etc.)
+- effect_sizes_top_Category[X]_[Level].png - Bar charts per level
+- effect_sizes_matrix_Category[X].csv - Combined matrix
+- effect_sizes_heatmap_Category[X].png - Heatmap
+- effect_sizes_[comparison]_comparison.png - **Side-by-side** (if 2 levels)
+- effect_sizes_[comparison]_scatter.png - **Scatter plot** (level1 d vs level2 d)
+- effect_sizes_[comparison]_unified.png - **UNIFIED PLOT** (both in one graph)
+
+Note: [comparison] is "claude_vs_gpt" for system analysis or "free_vs_restricted" for prompt analysis
+
+RESEARCH QUESTIONS:
+1. Does Claude struggle with different features than GPT?
+2. Which system/prompt is better overall?
+3. Are effects consistent across conditions?
+
+INTERPRETATION:
+Heatmap:
+- Rows = Systems (or Prompts)
+- Columns = Top features (union of top 20)
+- Color intensity = effect size
+
+Compare conditions:
+- Similar patterns → conditions make similar errors
+- Different patterns → conditions have different "styles"
+- Look for condition-specific outliers
+
+STATISTICAL ANALYSIS:
+- Compare effect sizes between conditions
+- Identify features where conditions diverge most
+- Count features with |d| > 0.5 per condition
+
+PRACTICAL IMPLICATIONS:
+- System #10: Choose Claude vs GPT based on which features matter
+- Prompt #11: Adjust prompt strategy to preserve important features
+- Targeted improvement: Focus on high-d features for each condition
+
+CLAUDE VS GPT COMPARISON PLOTS (if both systems present):
+
+Side-by-Side Comparison (effect_sizes_claude_vs_gpt_comparison.png):
+- **Layout**: 2 panels (Claude left, GPT right)
+- **Features**: Top 20 features (union of top 15 from each)
+- **Colors**: Blue for Claude, Red for GPT
+- **Aligned X-axes**: Same scale for direct comparison
+- **Zero line**: Shows direction of effect
+
+USE THIS TO IDENTIFY:
+- Which features Claude/GPT handle differently
+- Whether systems have similar weaknesses
+- System-specific strengths/weaknesses
+
+Scatter Plot (effect_sizes_claude_vs_gpt_scatter.png):
+- **X-axis**: Claude effect size
+- **Y-axis**: GPT effect size
+- **Diagonal**: Equal effect reference line
+- **Above diagonal**: GPT shows larger effect (worse than Claude)
+- **Below diagonal**: Claude shows larger effect (worse than GPT)
+- **Top 5 most different features labeled**
+
+INTERPRETATION:
+- Points on diagonal → systems equally affected
+- Points far from diagonal → system-specific effects
+- Upper-right quadrant → both systems struggle (positive d)
+- Lower-left quadrant → both systems over-use feature (negative d)
+- Upper-left quadrant → GPT struggles, Claude handles well
+- Lower-right quadrant → Claude struggles, GPT handles well
+
+Unified Plot (effect_sizes_[comparison]_unified.png):
+- **Layout**: Single plot with both conditions
+- **Format**: Horizontal bars, two bars per feature
+- **Top bar**: First condition (Free=red, Claude=blue)
+- **Bottom bar**: Second condition (Restricted=blue, GPT=red)
+- **Features**: Top 20 by average |d|
+- **Zero line**: Black vertical line at 0
+
+FOR ANALYSIS #10 (Systems):
+```
+Feature 1: ████ Claude (blue, top)
+           ████████ GPT (red, bottom)
+```
+
+FOR ANALYSIS #11 (Prompts):
+```
+Feature 1: ████████ Free (red, top)
+           ████ Restricted (blue, bottom)
+```
+
+INTERPRETATION OF UNIFIED PLOT:
+- **Compare bar lengths**: Which condition has smaller |d| for each feature?
+- **Shorter bar** = smaller effect = better preservation
+- **Same direction** (both positive or both negative) → consistent effect
+- **Opposite directions** (one positive, one negative) → conditions behave differently
+- **One bar near zero, other far** → condition-specific issue
+
+VISUAL PATTERNS:
+- First condition bars consistently shorter → that condition better overall
+- Second condition bars consistently shorter → that condition better
+- Mixed (varies by feature) → feature-dependent
+- Bars parallel → conditions make similar errors, different magnitudes
+
+EXAMPLE FOR SYSTEMS:
+```
+Feature: case_genitive
+  Claude: ████████ 0.4 (blue, top)
+  GPT:    ████████████████ 0.8 (red, bottom)
+→ Claude better preserves genitive (shorter bar)
+```
+
+EXAMPLE FOR PROMPTS:
+```
+Feature: subordination_ratio
+  Free:       ████████████ 0.7 (red, top)
+  Restricted: ████████ 0.5 (blue, bottom)
+→ Restricted better preserves subordination (shorter bar)
+```
+
+USE THIS PLOT FOR:
+✓ **Slide presentation** - one clear comparison slide
+✓ **Quick visual** - instant comparison across all features
+✓ **Feature identification** - spot which condition handles each feature better
+✓ **Overall pattern** - see if one condition consistently better
+✓ **Cross-analysis** - Compare #10 (systems) with #11 (prompts)
+
+PRACTICAL IMPLICATIONS:
+- Identify features to target for each system
+- Guide system-specific prompt engineering
+- Understand complementary strengths (ensemble strategies)
+- Choose system based on which features matter most
+
+NEXT STEPS:
+- Cross-reference with Analysis #07-08 (JS by system×prompt)
+- Identify features for condition-specific prompt engineering
+- Use scatter plot to find system-specific optimization targets

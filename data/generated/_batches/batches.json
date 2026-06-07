@@ -1,0 +1,42 @@
+[
+  {
+    "provider": "openai",
+    "system": "GPT5",
+    "prompt": "Restricted",
+    "batch_id": "batch_6a1c9087b5848190ac2cd0217e1220a0",
+    "n_requests": 1322,
+    "input_file": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\ag-llm-stylometry\\data\\generated\\_batches\\openai_GPT5_Restricted_requests.jsonl",
+    "submitted_ts": 1780256902.9496443,
+    "kind": "initial"
+  },
+  {
+    "provider": "openai",
+    "system": "GPT5",
+    "prompt": "Free",
+    "batch_id": "batch_6a1c908dc5b88190afe0abcc525ba362",
+    "n_requests": 1322,
+    "input_file": "C:\\Users\\USER01\\Dropbox\\Workplace\\D\\George\\PAPERS\\Paroysiaseis\\Cyprus 2025\\ag-llm-stylometry\\data\\generated\\_batches\\openai_GPT5_Free_requests.jsonl",
+    "submitted_ts": 1780256908.966268,
+    "kind": "initial"
+  },
+  {
+    "provider": "anthropic",
+    "system": "Claude48",
+    "prompt": "Restricted",
+    "batch_id": "msgbatch_01UwTybfofyMVeoCy7tYsnA1",
+    "n_requests": 1322,
+    "input_file": null,
+    "submitted_ts": 1780256980.0344098,
+    "kind": "initial"
+  },
+  {
+    "provider": "anthropic",
+    "system": "Claude48",
+    "prompt": "Free",
+    "batch_id": "msgbatch_01SfstRnJ3ojH9BxYjawHw5u",
+    "n_requests": 1322,
+    "input_file": null,
+    "submitted_ts": 1780256982.2527444,
+    "kind": "initial"
+  }
+]

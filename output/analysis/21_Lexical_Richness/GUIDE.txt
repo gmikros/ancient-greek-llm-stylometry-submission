@@ -1,0 +1,211 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 21: LEXICAL RICHNESS (GLOBAL)
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Lexical diversity and vocabulary richness
+- Global comparison: Human vs AI
+- Optional: System comparison (Claude vs GPT)
+- Whether AI maintains lexical sophistication
+
+VARIABLES INVOLVED:
+- TTR (Type-Token Ratio): Unique words / total words
+- MATTR (Moving-Average TTR): Rolling window TTR (more robust)
+- Hapax legomena: Words appearing only once (lexical creativity)
+- n_unique_words: Total vocabulary size
+- Category1 (System): Claude vs GPT (if analyzed)
+- Category4 (Label): Human vs AI
+
+FILES GENERATED:
+- lexical_distributions_global.png - Distributions (Human vs AI or by system)
+- lexical_stats_global.csv - Mean, std, median, min, max by group
+- lexical_effect_sizes.csv - Cohen's d for each metric
+- lexical_boxplots_comparison.png - 3 box plots (TTR, MATTR, Hapax) side-by-side
+- lexical_means_comparison.png - Bar chart of means (raw values)
+- lexical_normalized_comparison.png - Normalized bar chart (0-1 scale)
+- lexical_normalized_values.csv - Normalized values for all metrics
+- lexical_composite_slide.png - **PRESENTATION SLIDE** (box plots + bar chart combined)
+
+RESEARCH QUESTIONS:
+1. Does AI maintain lexical diversity comparable to humans?
+2. Is AI more repetitive (lower TTR) or more varied (higher TTR)?
+3. Does AI generate hapax legomena (lexical creativity)?
+4. Do Claude and GPT differ in lexical richness?
+
+INTERPRETATION:
+
+TTR (Type-Token Ratio):
+- Range: 0 to 1 (higher = more diverse vocabulary)
+- Human > AI: Humans use richer vocabulary
+- AI > Human: AI over-diversifies (unusual)
+- Similar: Vocabulary diversity preserved
+- Typical values: 0.4-0.7 for literary texts
+
+MATTR (Moving-Average TTR):
+- More robust than TTR (controls for text length)
+- Same interpretation as TTR
+- Preferred metric for comparing texts of different lengths
+
+Hapax Legomena (words appearing once):
+- High hapax rate: Lexical creativity, rich vocabulary
+- Low hapax rate: Repetitive, limited vocabulary
+- Human > AI: Humans more creative/varied
+- AI > Human: AI less coherent (possible over-generation)
+
+n_unique_words:
+- Absolute vocabulary size
+- Confounded with text length
+- Use with caution or normalize by text length
+
+CROSS-REFERENCE WITH ANALYSIS #03:
+From sentence/word length analysis:
+- If word length similar BUT lexical richness differs →
+  AI uses same-length words but more repetitively
+- If both differ → comprehensive lexical difference
+
+EXPECTED PATTERNS:
+
+Scenario 1: Human TTR > AI TTR
+→ AI is more repetitive, reuses vocabulary
+→ Lacks lexical creativity
+→ **Interpretation**: "AI maintains grammatical structure but shows lexical poverty"
+
+Scenario 2: Human TTR < AI TTR
+→ AI over-diversifies vocabulary
+→ Possible lack of coherence
+→ **Interpretation**: "AI generates varied but incoherent vocabulary"
+
+Scenario 3: TTR similar, hapax different
+→ Overall diversity similar but creativity differs
+→ Focus on hapax for lexical innovation measure
+
+BY SYSTEM COMPARISON:
+
+If Claude TTR > GPT TTR:
+→ Claude uses richer vocabulary
+→ May be more creative but less focused
+
+If GPT TTR > Claude TTR:
+→ GPT more diverse
+→ Check if coherent or scattered
+
+PRACTICAL IMPLICATIONS:
+- Low AI TTR → Prompts should encourage lexical variation
+- High AI hapax → May indicate hallucination/errors (check manually)
+- System differences → Choose based on desired lexical profile
+
+ROBUSTNESS CONSIDERATIONS:
+- TTR decreases with text length (longer texts → lower TTR)
+- MATTR controls for this (preferred)
+- Hapax rate should be normalized by text length
+- Compare within similar-length texts when possible
+
+STATISTICAL TESTS:
+
+From lexical_effect_sizes.csv:
+- Test if TTR differs: t-test
+- Effect size: Cohen's d
+- Report: "Human TTR (M = X.XX, SD = X.XX) was [higher/lower] than
+           AI (M = X.XX, SD = X.XX), d = X.XX, p = .XXX"
+
+From lexical_stats_global.csv:
+- System comparison: One-way ANOVA
+- Post-hoc: Claude vs GPT pairwise test
+
+VISUALIZATION GUIDE:
+
+lexical_boxplots_comparison.png:
+- 3 box plots (TTR, MATTR, Hapax)
+- Each shows: Human (green), Claude (blue), GPT (red)
+- Boxes show quartiles, whiskers show range
+- Compare medians (line in box) and spreads (box width)
+
+lexical_means_comparison.png:
+- Grouped bar chart
+- 3 metrics × 3 groups (Human, Claude, GPT)
+- Easy to spot which group has higher means
+
+RECOMMENDED FOR SLIDE 19:
+
+Use **lexical_composite_slide.png** - comprehensive presentation slide:
+
+LAYOUT: VERTICAL (14" × 12")
+┌────────────────────────────────────────┐
+│  TOP ROW: 3 Box Plots (raw values)     │
+│  [TTR]  [MATTR]  [Hapax]               │
+│  Each: Human vs Claude vs GPT          │
+├────────────────────────────────────────┤
+│  BOTTOM: Normalized Bar Chart (0-1)    │
+│  All 3 metrics on same scale           │
+│  Values labeled on bars                │
+└────────────────────────────────────────┘
+
+TOP PANELS: Distribution & Variability (Raw Values)
+- 3 box plots (one per metric)
+- Show medians, quartiles, and outliers
+- Green = Human, Blue = Claude, Red = GPT
+- Raw scales (TTR: 0-1, MATTR: 0-1, Hapax: counts)
+- **Shows**: Range and variability for each metric
+
+BOTTOM PANEL: Normalized Mean Comparison (0-1 Scale)
+- Grouped bars with ALL metrics normalized to 0-1
+- Normalization: (value - min) / (max - min)
+- Same color scheme (green/blue/red)
+- Values labeled on each bar (e.g., "0.82")
+- Gray dotted line at 0.5 (midpoint)
+- **Shows**: Which group performs better ACROSS ALL METRICS on same scale
+
+WHY NORMALIZE THE BOTTOM PANEL?
+- TTR and MATTR already 0-1, but hapax is raw count (50-200)
+- Without normalization, hapax bars dwarf TTR/MATTR → misleading visual
+- Normalization puts all on same scale → fair visual comparison
+- Easy to see: "Human consistently at 0.7-0.8 across all three"
+
+USE THIS SLIDE TO SAY:
+"TTR and MATTR reveal [Human/AI] maintains greater lexical diversity.
+ Hapax legomena rate suggests [creativity/repetition] patterns.
+ The box plots (top) show [variability pattern], while the bar chart
+ (bottom) makes mean differences clear."
+
+NORMALIZED COMPARISON (lexical_normalized_comparison.png):
+- All metrics scaled to 0-1 for direct comparability
+- Normalization: (value - min) / (max - min) across entire dataset
+- **Use when**: Metrics have different scales (TTR is 0-1, hapax is counts)
+- Shows relative performance across metrics on same scale
+- Easier to spot: "Human consistently higher/lower across all metrics"
+
+WHY NORMALIZE?
+- TTR already 0-1 scale
+- MATTR also 0-1 scale  
+- Hapax is raw count (scale depends on text length)
+- Normalization makes hapax comparable to TTR/MATTR
+- All bars on same 0-1 scale → easier visual comparison
+
+INTERPRETATION OF NORMALIZED PLOT:
+- 0.0 = Minimum value observed (across all groups)
+- 1.0 = Maximum value observed (across all groups)
+- 0.5 line = midpoint reference
+- Consistent pattern (all bars similar height) → uniform across metrics
+- Variable pattern (bars different heights) → metric-specific effects
+
+NARRATIVE OPTIONS:
+
+If lexical richness is preserved:
+→ "While AI differs in syntactic packaging (Slide X), lexical 
+   sophistication is maintained—TTR and hapax rates are comparable."
+
+If lexical richness differs:
+→ "AI shows reduced lexical richness (lower TTR, fewer hapax legomena),
+   suggesting vocabulary reuse despite grammatical competence."
+
+CROSS-LEVEL SYNTHESIS:
+Compare with:
+- Analysis #03: Word length (lexeme choice)
+- Analysis #09: Global effects (which lexical features discriminate)
+- Analysis #20: Clause complexity (structural vs lexical)
+
+Together they reveal:
+- Micro: Word form (length, morphology)
+- Meso: Lexical choice (TTR, diversity)
+- Macro: Syntactic packaging (clauses, sentences)

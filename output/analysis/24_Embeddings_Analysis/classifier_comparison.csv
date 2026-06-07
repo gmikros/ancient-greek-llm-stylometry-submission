@@ -1,0 +1,5 @@
+Method,AUROC,Brier_Score,N_Features
+"Embedding
+(50 dims)",0.7450155462886883,0.16219461596914267,50
+"Stylometric
+(107 features)",0.7010603748,0.151639432,69

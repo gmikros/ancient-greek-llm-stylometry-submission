@@ -1,0 +1,37 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 02: CORPUS SUMMARY
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Overall corpus size and composition
+- Distribution across categorical variables
+- Basic descriptive statistics
+
+VARIABLES INVOLVED:
+- Category1 (System): Model/system used
+- Category2 (Author): Original author
+- Category3 (Prompt): Prompting strategy
+- Category4 (Label): Human/AI classification
+
+FILES GENERATED:
+- corpus_counts.png - Bar chart of Human vs AI samples
+- counts_by_label.csv - Counts by Human/AI
+- counts_by_author.csv - Counts by Author
+- counts_by_model.csv - Counts by System
+- counts_by_prompt.csv - Counts by Prompt
+
+RESEARCH QUESTIONS:
+1. How large is my corpus?
+2. What's the Human:AI ratio?
+3. Which authors/systems/prompts are most represented?
+
+INTERPRETATION TIPS:
+- Ensure sufficient samples for each author (minimum 20-30)
+- Check if AI:Human ratio is reasonable
+- Note any authors with very few samples
+
+NEXT STEPS:
+- Use this to report corpus statistics in your paper
+- Verify sufficient power for planned analyses
+- Proceed to specific analyses (#03-18)

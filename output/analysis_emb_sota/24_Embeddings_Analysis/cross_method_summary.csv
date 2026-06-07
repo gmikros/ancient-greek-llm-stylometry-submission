@@ -1,0 +1,2 @@
+Embedding_AUROC,Embedding_Brier,Embedding_Dimensions,N_Samples,N_Authors,Mean_Embedding_Distance,Std_Embedding_Distance
+0.7104770513433778,0.1527128554486907,50,6610,10,0.545849582318912,0.15180532166476748

@@ -1,0 +1,10 @@
+size,doc_id,src_words,out_words,length_ratio,in_tolerance,n_attempts,fidelity_jaccard,failed
+150,Human_Hyperides_0030002,150,154,1.0266666666666666,True,1,0.7428571428571429,False
+150,Human_Demosthenes_0014041,150,150,1.0,True,1,0.5483870967741935,False
+150,Human_Isaeus_0017009,150,153,1.02,True,1,0.569620253164557,False
+250,Human_Demosthenes_0014027,250,252,1.008,True,1,0.6794258373205742,False
+250,Human_Demosthenes_0014027,250,0,0.0,False,1,0.0,True
+250,Human_Demosthenes_0014027,250,251,1.004,True,1,0.6359223300970874,False
+400,Human_Demosthenes_0014037,400,402,1.005,True,1,0.7925170068027211,False
+400,Human_Lycurgus_0034001,400,405,1.0125,True,1,0.6253968253968254,False
+400,Human_Lycurgus_0034001,400,407,1.0175,True,1,0.6416938110749185,False

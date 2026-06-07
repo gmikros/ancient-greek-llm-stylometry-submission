@@ -1,0 +1,40 @@
+# Pinned environment for the Ancient Greek LLM Stylometry (LREC) study.
+# Versions captured from the working interpreter on Windows 11 / Python 3.12.5.
+# A complete freeze is in env/pip-freeze-full.txt.
+
+# --- Generation (LLM APIs) ---
+openai==2.15.0
+anthropic==0.69.0
+tiktoken==0.11.0
+
+# --- NLP backends / feature extraction ---
+spacy==3.8.7
+textdescriptives==2.8.2
+stanza==1.11.1
+gensim==4.4.0
+# Ancient Greek spaCy model is NOT on PyPI. Install separately (see env/ENVIRONMENT.md),
+# e.g. greCy / odyCy: grc_proiel_trf or grc_odycy_joint_trf.
+
+# --- Neural embeddings / perplexity ---
+torch==2.10.0          # NOTE: the captured build is CPU-only (2.10.0+cpu).
+                       # For GPU, install the matching CUDA build (see env/ENVIRONMENT.md).
+transformers==5.2.0
+tokenizers==0.22.2
+sentence-transformers==5.2.3
+safetensors==0.7.0
+
+# --- Analysis / statistics ---
+numpy==2.2.4
+pandas==2.3.2
+scipy==1.16.2
+scikit-learn==1.7.2
+statsmodels==0.14.6
+umap-learn==0.5.9.post2
+
+# --- Visualization ---
+matplotlib==3.10.7
+seaborn==0.13.2
+
+# --- IO ---
+openpyxl==3.1.5
+tqdm==4.67.1

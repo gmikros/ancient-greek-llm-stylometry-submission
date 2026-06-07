@@ -1,0 +1,101 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 14: PCA SCATTER (GLOBAL)
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Overall stylometric "space" of your texts
+- Separation between Human and AI texts
+- Clustering patterns and outliers
+
+VARIABLES INVOLVED:
+- All ~107 numeric features
+- Category4 (Label): Human vs AI (color coding)
+- PC1 and PC2: First two principal components
+
+CALCULATION:
+1. Standardize all features
+2. Perform PCA (Principal Component Analysis)
+3. Project each text onto PC1 and PC2
+4. Plot with colors for Human vs AI
+
+FILES GENERATED:
+- pca_scatter_global.png - Human vs AI (basic view)
+- pca_scatter_by_system.png - Colored by System (Human, Claude, GPT)
+- pca_scatter_by_prompt.png - Colored by Prompt (Human, Free, Restricted)
+- pca_composite_three_views.png - **COMPOSITE** (all three in one figure)
+
+RESEARCH QUESTIONS:
+1. Do Human and AI texts form distinct clusters?
+2. How much do distributions overlap?
+3. Are there unusual texts (outliers)?
+4. What % of variance is explained by PC1-PC2?
+
+INTERPRETATION:
+Separation:
+- Distinct clusters: Strong AI signature, easily distinguishable
+- Overlapping clouds: Some AI texts are very human-like
+- PC1 explained variance > 30%: Single dominant dimension
+
+Outliers:
+- Far from Human cluster: Atypical authors or errors
+- Far from AI cluster: Failed rewrites or unusual prompts
+
+LIMITATIONS:
+- Only shows 2 dimensions (typically 20-40% of variance)
+- Color-coded by overall Human/AI, not system or prompt
+- Linear method (may miss nonlinear patterns)
+
+ADDITIONAL VIEWS (STRATIFIED):
+
+PCA by System (pca_scatter_by_system.png):
+- **Colors**: Green (Human), Blue (Claude), Red (GPT)
+- **Markers**: Circle (Human), Square (Claude), Triangle (GPT)
+- **Shows**: Whether Claude and GPT cluster differently
+- **Use to identify**: System-specific distributions in feature space
+
+Interpretation:
+- Claude and GPT overlap → systems produce similar outputs
+- Claude and GPT separate → systems have distinct "styles"
+- One system closer to Human → better overall preservation
+
+PCA by Prompt (pca_scatter_by_prompt.png):
+- **Colors**: Green (Human), Red (Free), Blue (Restricted)
+- **Markers**: Circle (Human), Triangle (Free), Square (Restricted)
+- **Shows**: Whether Free and Restricted prompts cluster differently
+- **Use to identify**: Prompt strategy effect on overall style
+
+Interpretation:
+- Free and Restricted overlap → prompt doesn't affect overall style
+- Restricted closer to Human → prompt compresses toward human style
+- Free scattered → prompt increases variability
+
+COMPOSITE VIEW (pca_composite_three_views.png):
+- **Layout**: 3 panels side-by-side (16" × 5")
+- **Panel A**: Human vs AI (basic separation)
+- **Panel B**: By System (Claude vs GPT vs Human)
+- **Panel C**: By Prompt (Free vs Restricted vs Human)
+- **Same PCA space**: All panels show same projection
+- **USE FOR PRESENTATION**: Shows multiple perspectives at once
+
+WHAT THE COMPOSITE SHOWS:
+1. **Overall separation** (Panel A): Is AI detectable?
+2. **System differences** (Panel B): Do Claude/GPT cluster separately?
+3. **Prompt effects** (Panel C): Does prompt strategy affect distribution?
+
+CROSS-PANEL INSIGHTS:
+- If A shows separation but B shows overlap → Human-AI gap exists but systems similar
+- If B shows Claude near Human, GPT far → Claude better overall
+- If C shows Restricted near Human, Free far → Restricted works better
+
+FOLLOW-UP:
+- Identify and inspect outliers manually
+- Check if outliers are specific authors
+- Use 3D PCA or t-SNE for more comprehensive view
+- Cross-reference with classifier results (#17-18)
+
+PRACTICAL USE:
+- Quick visual assessment of separability
+- Identify problematic texts for investigation
+- **Presentation-friendly**: Composite shows complete story
+- Compare with JSD and distance metrics for validation

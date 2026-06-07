@@ -1,0 +1,265 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 19: COMPOSITE PREDICTION PROBABILITY DISTRIBUTIONS
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Unified view of prediction probabilities across ALL system × prompt combinations
+- How well the classifier separates Human from AI for each condition
+- Overlap and separation patterns between true labels and predictions
+- Comparative detectability across different configurations
+
+VARIABLES INVOLVED:
+- Category1 (System): Claude vs GPT
+- Category3 (Prompt): Free vs Restricted
+- Category4 (Label): Human vs AI (true labels)
+- All ~107 numeric stylometric features (used for classification)
+- Predicted probabilities from Logistic Regression classifier
+
+CALCULATION:
+For each system × prompt combination:
+1. Train Logistic Regression classifier with cross-validation
+2. Generate predicted probabilities for each sample (0-1 scale)
+3. Aggregate predictions across all conditions
+4. Visualize distributions by true label and condition
+
+FILES GENERATED:
+- all_predictions_composite.csv - All predictions with metadata
+- composite_prediction_distributions.png - **MAIN PLOT** (overlapping histograms)
+- composite_violin_plot.png - Violin plots by condition
+- separation_quality_bars.png - Separation metric comparison
+- separation_metrics.csv - Quantitative separation measures
+- composite_unified_slide.png - **PRESENTATION SLIDE** (all views combined)
+
+RESEARCH QUESTIONS:
+1. Which system × prompt combination is hardest to detect (best AI)?
+2. How much overlap exists between Human and AI predictions?
+3. Are prediction distributions consistent across conditions?
+4. Which configuration shows the best separation quality?
+
+INTERPRETATION:
+
+Prediction Probability Scale:
+- 0.0 = Confidently predicted as Human
+- 0.5 = Ambiguous (decision threshold)
+- 1.0 = Confidently predicted as AI
+
+For TRUE AI SAMPLES (should be predicted high):
+- Distribution shifted RIGHT (toward 1.0) = Good (correctly identified as AI)
+- Distribution centered near 0.5 = Ambiguous (hard to classify)
+- Distribution shifted LEFT (toward 0.0) = Excellent AI (evades detection)
+
+For TRUE HUMAN SAMPLES (should be predicted low):
+- Distribution shifted LEFT (toward 0.0) = Good (correctly identified as Human)
+- Distribution centered near 0.5 = Ambiguous (hard to classify)
+- Distribution shifted RIGHT (toward 1.0) = Misclassified
+
+IDEAL PATTERN (Perfect Classifier):
+- AI samples: All predictions near 1.0
+- Human samples: All predictions near 0.0
+- No overlap between distributions
+
+REALISTIC PATTERN (Good Classifier):
+- AI samples: Mean ~0.7-0.9, some overlap with threshold
+- Human samples: Mean ~0.1-0.3, some overlap with threshold
+- Moderate separation between distributions
+
+POOR SEPARATION PATTERN:
+- Both distributions centered near 0.5
+- Extensive overlap
+- Classifier cannot reliably distinguish
+
+VISUALIZATION GUIDE:
+
+composite_prediction_distributions.png (MAIN PLOT):
+- **Top Panel (A)**: AI samples - overlapping histograms for all conditions
+- **Bottom Panel (B)**: Human samples - overlapping histograms for all conditions
+- **Colors**: 
+  * Light Blue = Claude-Free
+  * Dark Blue = Claude-Restricted
+  * Light Red = GPT-Free
+  * Dark Red = GPT-Restricted
+- **Vertical line at 0.5**: Decision threshold
+- **Density scale**: Normalized for comparison
+
+INTERPRETATION:
+- Distributions shifted LEFT (for AI) = Harder to detect = Better AI
+- Distributions shifted RIGHT (for Human) = Easier to detect = Worse AI
+- Narrow distributions = Consistent predictions
+- Wide distributions = Variable predictions
+
+composite_violin_plot.png:
+- **Left Panel**: AI samples - violin plots by condition
+- **Right Panel**: Human samples - violin plots by condition
+- **Violin width**: Density at each probability level
+- **Black line inside**: Median
+- **Dot inside**: Mean
+
+WHAT VIOLINS SHOW:
+- Tall, narrow violin = Concentrated predictions (consistent)
+- Short, wide violin = Spread predictions (variable)
+- Violin position relative to 0.5 = Overall detectability
+
+separation_quality_bars.png:
+- **Metric**: (AI mean prediction) - (Human mean prediction)
+- **Higher bar** = Better separation = Easier to detect = Worse AI
+- **Lower bar** = Poorer separation = Harder to detect = Better AI
+- **Negative bar** = Classifier confused (unusual, suggests overfitting)
+
+INTERPRETATION:
+- Separation > 0.5: Excellent classifier performance
+- Separation 0.3-0.5: Good classifier performance
+- Separation < 0.3: Poor classifier performance
+- Compare bars: Which condition has LOWEST separation? → Best AI
+
+composite_unified_slide.png (PRESENTATION SLIDE):
+**Layout**: 3 rows × 2 columns
+- **Row 1**: Histograms (AI left, Human right)
+- **Row 2**: Violin plots (AI left, Human right)
+- **Row 3**: Separation quality bar chart (spanning both columns)
+
+USE THIS SLIDE FOR:
+✓ Comprehensive overview of all conditions
+✓ Direct visual comparison of detectability
+✓ Identifying best/worst performing configurations
+✓ Supporting claims about AI quality
+
+CROSS-REFERENCE WITH OTHER ANALYSES:
+
+With Analysis #17 (Classifier ROC/Calibration):
+- AUROC from #17 quantifies separation shown here
+- High AUROC → clear separation in prediction distributions
+- Calibration curve from #17 shows if probabilities are well-calibrated
+
+With Analysis #18 (Classifier by System×Prompt):
+- This analysis AGGREGATES predictions from #18
+- #18 shows individual condition performance
+- This shows COMPARATIVE performance across conditions
+
+With Analysis #14 (PCA):
+- Visual separation in PCA should match prediction separation
+- Well-separated PCA clusters → clear prediction distributions
+- Overlapping PCA clusters → overlapping prediction distributions
+
+PRACTICAL IMPLICATIONS:
+
+Best AI Configuration (Lowest Separation):
+- Use this system×prompt for generation tasks
+- Hardest for humans/detectors to identify
+- Most "human-like" according to classifier
+
+Worst AI Configuration (Highest Separation):
+- Avoid this system×prompt if mimicry is goal
+- Easiest to detect
+- Most "AI-like" according to classifier
+
+Consistent vs Variable Performance:
+- Narrow distributions → Reliable, consistent outputs
+- Wide distributions → Unpredictable, variable outputs
+- Consider trade-off: Consistency vs detectability
+
+STATISTICAL ANALYSIS YOU CAN DO:
+
+From all_predictions_composite.csv:
+1. **Two-sample t-tests**: Compare mean predictions between conditions
+2. **ANOVA**: Test if separation differs significantly across conditions
+3. **Effect sizes**: Compute Cohen's d for each condition
+4. **Overlap coefficient**: Quantify distribution overlap
+
+From separation_metrics.csv:
+- Rank conditions by separation quality
+- Identify statistically significant differences
+- Correlate with other metrics (AUROC, Brier, JS divergence)
+
+EXPECTED PATTERNS:
+
+Pattern 1: Claude-Restricted lowest separation
+→ Claude with Restricted prompts hardest to detect
+→ Best mimics human style
+→ **Recommendation**: Use Claude-Restricted for generation
+
+Pattern 2: GPT-Free highest separation
+→ GPT with Free prompts easiest to detect
+→ Most divergent from human style
+→ **Avoid**: GPT-Free if mimicry is goal
+
+Pattern 3: All conditions show high separation (>0.5)
+→ All AI is easily detectable
+→ Classifier performs well across all conditions
+→ **Interpretation**: Strong stylometric differences persist
+
+Pattern 4: All conditions show low separation (<0.3)
+→ All AI is hard to detect
+→ Classifier struggles across all conditions
+→ **Interpretation**: AI successfully mimics human style
+
+NARRATIVE OPTIONS:
+
+If separation varies across conditions:
+→ "Detectability is configuration-dependent: Claude-Restricted achieves 
+   separation of 0.35 (hard to detect), while GPT-Free shows 0.62 
+   (easily detected)."
+
+If all conditions show similar separation:
+→ "Despite differences in system and prompt strategy, all AI configurations 
+   show comparable detectability (separation ~0.45), suggesting fundamental 
+   stylometric differences persist."
+
+If Human predictions are misclassified:
+→ "Notably, X% of human samples receive high AI probabilities, suggesting 
+   classifier uncertainty or stylistic heterogeneity within human authorship."
+
+RECOMMENDED FOR PRESENTATION:
+
+Use **composite_unified_slide.png** for comprehensive overview:
+- Shows distributions (histograms)
+- Shows variability (violins)
+- Shows comparative performance (separation bars)
+- Single slide tells complete story
+
+For focused comparison:
+- Use **composite_prediction_distributions.png** for distribution emphasis
+- Use **composite_violin_plot.png** for variability emphasis
+- Use **separation_quality_bars.png** for ranking emphasis
+
+INTERPRETATION TIPS:
+
+1. **Look at AI distributions first**: 
+   - Shifted left = Good AI (hard to detect)
+   - Shifted right = Bad AI (easy to detect)
+
+2. **Check Human distributions**:
+   - Should be shifted left (low predictions)
+   - If shifted right = Classifier confused
+
+3. **Compare conditions**:
+   - Which has lowest mean AI prediction? → Best AI
+   - Which has highest mean Human prediction? → Worst classifier
+
+4. **Assess overlap**:
+   - Minimal overlap = Clear separation
+   - Extensive overlap = Ambiguous classification
+
+5. **Consider practical threshold**:
+   - If using 0.5 threshold, what % would be misclassified?
+   - Could adjust threshold for better performance?
+
+KEY INSIGHT FOR YOUR NARRATIVE:
+
+This analysis directly addresses: "How detectable is AI-generated text?"
+
+- Quantifies detectability across all configurations
+- Identifies best/worst performing systems
+- Shows if prompt strategy matters for detectability
+- Provides evidence for claims about AI quality
+
+Use separation_metrics.csv values to support quantitative claims:
+"Claude-Restricted achieves a separation of 0.35, indicating predictions 
+overlap substantially with human baselines, while GPT-Free shows 0.62, 
+suggesting clear stylometric divergence."
+
+NEXT STEPS:
+- Cross-reference with #07-08 (JS divergence by system×prompt)
+- Compare with #16 (proximity by system×prompt)
+- All three should agree on best configuration
+- Use for final recommendations on system selection

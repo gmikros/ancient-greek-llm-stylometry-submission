@@ -1,0 +1,106 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 24: EMBEDDING-BASED STYLOMETRIC ANALYSIS
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Analysis of 50-dimensional embeddings from Ancient-Greek-BERT model
+- Comparison with traditional stylometric features (107 features)
+- Validation of stylometric findings using neural embeddings
+- Assessment of embedding-based vs feature-based approaches
+
+EMBEDDING MODEL:
+- Model: pranaydeeps/Ancient-Greek-BERT
+- Dimensions: 50 (mean pooling of last hidden state)
+- Input: Full text (truncated to 512 tokens)
+- Output: Document-level embedding vector
+
+VARIABLES INVOLVED:
+- WE1-WE50: 50 embedding dimensions
+- Category1 (System): Claude, GPT, Human
+- Category2 (Author): 10 Ancient Greek authors
+- Category3 (Prompt): Free, Restricted, Human
+- Category4 (Label): AI, Human
+
+FILES GENERATED:
+Part 1: Dimensionality Reduction
+- 01_tsne_by_label.png - t-SNE colored by Human vs AI
+- 02_tsne_by_system.png - t-SNE colored by System
+- 03_tsne_by_prompt.png - t-SNE colored by Prompt
+- 04_tsne_by_author.png - t-SNE colored by Author
+- 05_umap_by_label.png - UMAP colored by Human vs AI
+- 06_umap_by_system.png - UMAP colored by System
+- 07_umap_by_prompt.png - UMAP colored by Prompt
+- 08_umap_by_author.png - UMAP colored by Author
+- 09_tsne_umap_composite.png - PRESENTATION: Side-by-side comparison
+
+Part 2: Embedding Distances
+- 10_embedding_distances_heatmap.png - SystemxPrompt distance matrix
+- 11_embedding_distances_by_author.png - Author-specific distances
+- embedding_distances.csv - All pairwise distances
+
+Part 3: Correlation with Stylometric Analyses
+- 12_distance_correlation_canberra.png - Embedding vs Canberra distance
+- 13_distance_correlation_cosine.png - Embedding vs Cosine distance
+- 14_distance_correlation_matrix.png - PRESENTATION: All correlations
+- 15_silhouette_comparison.png - Clustering quality comparison
+- correlation_with_stylometric.csv - Detailed correlation statistics
+
+Part 4: Classification Comparison
+- 16_embedding_classifier_roc.png - ROC curve for embedding classifier
+- 17_classifier_comparison.png - PRESENTATION: Embedding vs Stylometric
+- embedding_classifier_metrics.json - Performance metrics
+
+Part 5: SystemxPrompt and Author Analysis
+- 18_system_prompt_embedding_proximity.png - Configuration comparison
+- 19_jsd_vs_embedding_distance.png - JSD correlation
+- 20_author_embedding_variance.png - Author difficulty ranking
+- 21_authorial_signature_comparison.png - PRESENTATION: Signature strength
+- embedding_silhouette_scores.csv - Cluster cohesion metrics
+
+Part 6: Cross-Method Validation
+- cross_method_summary.csv - Overall comparison statistics
+
+RESEARCH QUESTIONS:
+1. Do embeddings capture the same stylistic differences as features?
+2. Are embeddings more/less discriminative than stylometric features?
+3. Do both methods agree on difficult authors and best systems?
+4. Are embeddings complementary or redundant with features?
+
+INTERPRETATION GUIDE:
+
+High Correlation (r > 0.7):
+-> Embeddings and features capture similar stylistic information
+-> Methods provide convergent validity
+-> Embeddings could replace features for efficiency
+
+Moderate Correlation (r = 0.4-0.7):
+-> Methods capture complementary information
+-> Embeddings may focus on semantic content
+-> Features may focus on grammatical patterns
+-> Combined approach recommended
+
+Low Correlation (r < 0.4):
+-> Methods capture different aspects of style
+-> Embeddings: semantic, contextual, lexical
+-> Features: grammatical, structural, morphological
+-> Both methods provide unique insights
+
+EXPECTED FINDINGS:
+- Embeddings likely more sensitive to semantic content
+- Features likely more sensitive to grammatical patterns
+- Both should identify Human vs AI separation
+- Agreement on systemxprompt ranking validates findings
+- Disagreement on author difficulty suggests different "signatures"
+
+PRACTICAL IMPLICATIONS:
+- If embeddings perform well: Simpler, more efficient approach
+- If features perform better: Grammatical patterns more diagnostic
+- If both needed: Comprehensive stylometric profile
+- Cross-validation increases confidence in findings
+
+NEXT STEPS:
+- Use embedding-feature agreement to validate key findings
+- Investigate cases where methods disagree
+- Consider ensemble approaches combining both
+- Explore which embedding dimensions correlate with which features

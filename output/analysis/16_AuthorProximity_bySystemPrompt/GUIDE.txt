@@ -1,0 +1,61 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 16: AUTHOR PROXIMITY BY SYSTEM × PROMPT
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- STRATIFIED proximity: which system×prompt combinations preserve 
+  style most faithfully
+- Interaction between system and prompt in style preservation
+- Condition-specific fidelity to originals
+
+VARIABLES INVOLVED:
+- Category1 (System): Claude, GPT
+- Category2 (Author): 10 authors
+- Category3 (Prompt): Free, Restricted
+- All numeric features
+
+CALCULATION:
+For each system × prompt:
+1. For each author, get human centroid (same as #15)
+2. For AI texts with this system+prompt, compute distances
+3. Average across all authors
+
+FILES GENERATED:
+- author_centroid_distance_long.csv - Distance per text
+- author_centroid_distance_mean_by_sys_prompt.csv - Mean by condition
+- author_centroid_distance_heatmap.png - Heatmap (systems × prompts)
+
+RESEARCH QUESTIONS:
+1. Which system×prompt preserves style most faithfully?
+2. Is Claude or GPT closer to human centroids?
+3. Does prompt strategy interact with system choice?
+4. What's the optimal configuration?
+
+INTERPRETATION:
+Heatmap:
+- Rows = Systems
+- Columns = Prompts
+- Darker = higher distance (worse preservation)
+- Lighter = lower distance (better preservation)
+- Minimum cell = best system×prompt
+
+Compare:
+- Which system is consistently better?
+- Which prompt is consistently better?
+- Is there an interaction?
+
+PRACTICAL IMPLICATIONS:
+✓ DIRECT ANSWER TO: "What's the best way to rewrite Ancient Greek?"
+- Guides prompt engineering and system selection
+- Quantifies trade-offs
+- Informs cost-benefit decisions
+
+CROSS-REFERENCE:
+- Compare with #07-08 (JS by system×prompt)
+- Compare with #18 (classifier by system×prompt)
+- All three should agree on best configuration
+
+THIS IS A PRIMARY ANALYSIS:
+Use for hypothesis testing about system and prompt effects.
+Properly stratified, respects your experimental design.

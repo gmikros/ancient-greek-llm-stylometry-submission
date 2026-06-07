@@ -1,0 +1,8 @@
+{
+  "AUROC":0.944967168,
+  "Brier":0.0918332744,
+  "CV_method":"GroupKFold (n=5 groups by author)",
+  "Classifier":"Logistic Regression",
+  "n_samples":2644,
+  "n_features":69
+}

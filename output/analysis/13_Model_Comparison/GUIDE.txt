@@ -1,0 +1,52 @@
+
+═══════════════════════════════════════════════════════════════════════
+ANALYSIS 13: MODEL COMPARISON
+═══════════════════════════════════════════════════════════════════════
+
+WHAT THIS SHOWS:
+- Stylistic profile of each AI system across all features
+- Which features differ most between Claude and GPT
+- Overall "signature" of each system
+
+VARIABLES INVOLVED:
+- Category1 (System): Claude, GPT
+- Category4 (Label): AI texts only
+- All numeric features (standardized to z-scores)
+
+CALCULATION:
+1. Standardize all features (z = (x - mean) / std)
+2. For each system, compute mean z-score per feature
+3. Plot as parallel coordinates
+
+FILES GENERATED:
+- model_means_standardized.csv - Z-scores per system
+- model_parallel.png - Parallel coordinates plot
+
+RESEARCH QUESTIONS:
+1. How do Claude and GPT differ in stylistic tendencies?
+2. Do systems show similar or divergent profiles?
+3. Which features show biggest system differences?
+
+INTERPRETATION:
+Parallel coordinates plot:
+- Systems = lines
+- Features = vertical axes
+- Parallel lines → systems behave similarly
+- Crossing lines → systems have opposite tendencies
+- Large gaps → strong system effect on that feature
+- Above 0 → system uses feature more than average
+- Below 0 → system uses feature less than average
+
+PRACTICAL USE:
+- Guide system selection for rewriting
+- Identify which system is more "conservative" vs "creative"
+- Suggest ensemble strategies (Claude for X, GPT for Y)
+
+AGGREGATION NOTE:
+Aggregates across prompts and authors. For stratified analysis,
+see Analysis #10 (effects by system) and #07-08 (JS by system×prompt).
+
+NEXT STEPS:
+- Identify features where systems diverge most
+- Check if differences align with known system capabilities
+- Use for targeted system selection
