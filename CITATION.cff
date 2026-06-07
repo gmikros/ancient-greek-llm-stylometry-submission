@@ -20,4 +20,13 @@ license:
   - MIT
   - CC-BY-SA-4.0
 version: 0.1.0
-date-released: 2026-05-31
+date-released: 2026-06-07
+doi: 10.5281/zenodo.20584471
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20584471
+    description: Concept DOI (all versions; resolves to the latest release)
+  - type: doi
+    value: 10.5281/zenodo.20584472
+    description: Version DOI (v0.1.0)
+repository-code: "https://github.com/gmikros/ancient-greek-llm-stylometry-submission"

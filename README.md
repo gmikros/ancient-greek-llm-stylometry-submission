@@ -6,7 +6,7 @@
 [![NLP: Stanza grc PROIEL](https://img.shields.io/badge/NLP-Stanza%20grc%20PROIEL-orange)](https://stanfordnlp.github.io/stanza/)
 [![Embeddings: Ancient-Greek-BERT](https://img.shields.io/badge/Embeddings-Ancient--Greek--BERT-yellow)](https://huggingface.co/pranaydeeps/Ancient-Greek-BERT)
 [![Venue: LRE (Springer)](https://img.shields.io/badge/Venue-Language%20Resources%20%26%20Evaluation-9cf)](https://www.springer.com/journal/10579)
-[![DOI: pending](https://img.shields.io/badge/DOI-pending%20(Zenodo)-red.svg)](#citation)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20584471.svg)](https://doi.org/10.5281/zenodo.20584471)
 
 How closely do state-of-the-art LLMs (GPT-5.5, Claude 4.8) write Ancient Greek
 compared to the human Attic orators, and have they improved over the previous
@@ -96,9 +96,10 @@ python src/reconcile_legacy.py
 
 ## Citation
 
-If you use this corpus, code, or analyses, please cite the resource. Machine-readable
-metadata is in [`CITATION.cff`](CITATION.cff); a DOI will be minted via Zenodo on the
-tagged release at acceptance.
+If you use this corpus, code, or analyses, please cite the archived resource via its
+Zenodo DOI. Machine-readable metadata is in [`CITATION.cff`](CITATION.cff). The
+**concept DOI** below always resolves to the latest version; cite it unless you need a
+specific release.
 
 ```bibtex
 @misc{mikros_ag_llm_stylometry,
@@ -106,8 +107,11 @@ tagged release at acceptance.
   title        = {Ancient Greek LLM Stylometry: a Resource and Evaluation
                   of Human vs.\ LLM-generated Attic Prose},
   year         = {2026},
-  howpublished = {\url{https://github.com/gmikros/ancient-greek-llm-stylometry-submission}},
-  note         = {Code: MIT; Data: CC BY-SA 4.0. DOI pending (Zenodo).}
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.20584471},
+  url          = {https://doi.org/10.5281/zenodo.20584471},
+  note         = {Code: MIT; Data: CC BY-SA 4.0. See also
+                  \url{https://github.com/gmikros/ancient-greek-llm-stylometry-submission}}
 }
 ```
 
