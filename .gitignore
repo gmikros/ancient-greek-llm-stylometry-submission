@@ -8,6 +8,20 @@ __pycache__/
 venv/
 myenv*/
 
+# Manuscript-only artifacts (not part of the LRE submission bundle)
+*.docx
+paper/
+output/doc/
+scripts/_extracted/
+scripts/_assemble.py
+scripts/_cite_*.py
+scripts/_diag_runs.py
+scripts/_extract_docx.py
+scripts/_length.py
+scripts/_manuscript_content.py
+scripts/_verify*.py
+scripts/build_*_docx.py
+
 # Oversized regenerable intermediates (exceed GitHub's 100 MB file limit;
 # regenerate by re-running the embedding analysis, or fetch from the Zenodo archive)
 **/embedding_distance_matrix.npy
