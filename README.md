@@ -6,7 +6,7 @@
 [![NLP: Stanza grc PROIEL](https://img.shields.io/badge/NLP-Stanza%20grc%20PROIEL-orange)](https://stanfordnlp.github.io/stanza/)
 [![Embeddings: Ancient-Greek-BERT](https://img.shields.io/badge/Embeddings-Ancient--Greek--BERT-yellow)](https://huggingface.co/pranaydeeps/Ancient-Greek-BERT)
 [![Venue: LRE (Springer)](https://img.shields.io/badge/Venue-Language%20Resources%20%26%20Evaluation-9cf)](https://www.springer.com/journal/10579)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20584471.svg)](https://doi.org/10.5281/zenodo.20584471)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20584471-1682D4.svg)](https://doi.org/10.5281/zenodo.20584471)
 
 How closely do state-of-the-art LLMs (GPT-5.5, Claude 4.8) write Ancient Greek
 compared to the human Attic orators, and have they improved over the previous
